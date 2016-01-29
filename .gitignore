@@ -2,3 +2,7 @@
 appengine-generated/
 
 target/*
+
+# Eclipse specific files
+.classpath
+.project
