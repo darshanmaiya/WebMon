@@ -10,8 +10,10 @@
 <body>
 
 	<jsp:include page="includes/header.jsp" />
-	<div class="container">
-		Welcome to WebMon - A website monitoring service!
+	<div class="container outer-body">
+		<div class="jumbotron">
+			<h1>Welcome to WebMon!</h1>
+		</div>
 		<jsp:include page="includes/footer.html" />
 	</div>
 </body>

@@ -9,6 +9,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/">WebMon</a>
+			<p class="navbar-text">A website monitoring service</p>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
