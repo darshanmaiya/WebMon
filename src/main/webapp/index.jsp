@@ -53,6 +53,12 @@
 			
 		</div>
 		
+		<div>
+			<h3>
+				<a href="/login">Log In</a> or <a href="/signup">Sign Up</a> now to get started!
+			</h3>
+		</div>
+		
 		<jsp:include page="includes/footer.html" />
 	</div>
 </body>

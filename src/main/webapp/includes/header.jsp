@@ -18,8 +18,16 @@
 				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><button type="button" class="btn btn-primary navbar-btn">Sign In</button>&nbsp;&nbsp;</li>
-				<li><button type="button" class="btn btn-default navbar-btn">Sign Up</button></li>
+				<li>
+					<p class="navbar-btn">
+						<a href="/login" class="btn btn-primary">Log In</a>&nbsp;&nbsp;
+					</p>
+				</li>
+				<li>
+					<p class="navbar-btn">
+						<a href="/signup" class="btn btn-default">Sign Up</a>
+					</p>
+				</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
