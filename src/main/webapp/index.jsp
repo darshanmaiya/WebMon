@@ -30,7 +30,7 @@
 				<div class="item">
 					<img src="images/response-times.png" alt="Carousel" />
 					<div class="carousel-caption">
-						Record the reponse time of your website
+						Record the response times of your website
 					</div>
 				</div>
 				<div class="item">
