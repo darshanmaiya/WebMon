@@ -1,3 +1,5 @@
+package webmon;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,10 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HelloWorldTest {
-	private String localAddress = "http://localhost:8080/hello";
-	private String remoteAddress = "http://cs263-webmon.appspot.com/hello";
-	private String toTest = localAddress;
+	private String toTest = TestConstants.localAddress;
 	private String expectedResponse = "Hello World!";
+	
 	@Test
 	public void testReply() throws IOException {
 		URL url;
