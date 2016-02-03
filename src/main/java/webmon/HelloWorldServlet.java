@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.io.*;
 
 @SuppressWarnings("serial")
-public class HelloWorld extends HttpServlet {
+public class HelloWorldServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

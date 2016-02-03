@@ -5,11 +5,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>WebMon - Welcome</title>
 	
-	<jsp:include page="includes/head.html" />
+	<jsp:include page="WEB-INF/jsp/head.jsp" />
 </head>
 <body>
 
-	<jsp:include page="includes/header.jsp" />
+	<jsp:include page="WEB-INF/jsp/header.jsp" />
 	<div class="container outer-body">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -59,7 +59,7 @@
 			</h3>
 		</div>
 		
-		<jsp:include page="includes/footer.html" />
+		<jsp:include page="WEB-INF/jsp/footer.jsp" />
 	</div>
 </body>
 </html>
