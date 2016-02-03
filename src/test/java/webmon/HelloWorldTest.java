@@ -15,17 +15,21 @@ public class HelloWorldTest {
 	private String expectedResponse = "Hello World!";
 	
 	@Test
-	public void testReply() throws IOException {
+	public void testReply() {
 		URL url;
 		HttpURLConnection connection;
 		
-		url = new URL(toTest);
-		connection = (HttpURLConnection)url.openConnection();
-		connection.setRequestMethod("GET");
-		connection.connect();
-		int code = connection.getResponseCode();
-		assertEquals(200, code);
-		String response = (new BufferedReader(new InputStreamReader((connection.getInputStream())))).readLine();
-		assertEquals(expectedResponse, response);
+		try {
+			url = new URL(toTest);
+			connection = (HttpURLConnection)url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.connect();
+			int code = connection.getResponseCode();
+			assertEquals(200, code);
+			String response = (new BufferedReader(new InputStreamReader((connection.getInputStream())))).readLine();
+			assertEquals(expectedResponse, response);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 	}
 }
