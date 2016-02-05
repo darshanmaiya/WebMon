@@ -11,53 +11,19 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<form name="loginForm" action="/login" method="post" class="form-inline">
+		<form name="loginForm" action="/signup" method="post" class="form-signin">
 		
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="username">Name: </label>
-				</div>
-				<div class="col-sm-10">
-					<input class="form-control" type="text" required id="name" />
-				</div>
-			</div>
+			<h2 class="form-signin-heading">Sign Up for WebMon</h2>
+			<input class="form-control" type="text" required autofocus id="name" placeholder="Name" />
+			<input class="form-control" type="text" required id="email" placeholder="Email" />
+			<input class="form-control" type="text" required id="phone" placeholder="Phone" />
+			<input class="form-control" type="password" required id="password" placeholder="Password" />
+			<input class="form-control" type="password" required id="re-password" placeholder="Re-enter Password" />
 			
-			<br /><br />
-			
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="username">Email: </label>
-				</div>
-				<div class="col-sm-10">
-					<input class="form-control" type="text" required id="email" />
-				</div>
-			</div>
-			
-			<br /><br />
-			
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="password">Password: </label>
-				</div>
-				<div class="col-sm-10">
-					<input class="form-control" type="password" required id="password" />
-				</div>
-			</div>
-			
-			<br /><br />
-			
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="password">Re-enter Password: </label>
-				</div>
-				<div class="col-sm-10">
-					<input class="form-control" type="password" required id="re-password" />
-				</div>
-			</div>
-			
-			<br /><br />
-			
-			<input class="btn btn-primary" type="submit" value="Sign Up" />
+			<button class="btn btn-primary btn-block btn-lg" type="submit">
+				<span>Sign Up</span>
+				<span class="glyphicon glyphicon-check"></span>
+			</button>
 		</form>
 		
 	</div>

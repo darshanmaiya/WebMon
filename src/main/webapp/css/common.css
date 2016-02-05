@@ -1,4 +1,18 @@
-.outer-body {
+div.outer-body {
 	margin-top: 50px;
 	padding: 10px;
+}
+
+form.form-signin {
+	margin: 0 auto;
+	max-width: 330px;
+	padding: 10px;
+}
+
+form.form-signin .form-signin-heading {
+	margin-bottom: 20px;
+}
+
+form.form-signin input:not(:last-child) {
+	margin-bottom: 20px;
 }

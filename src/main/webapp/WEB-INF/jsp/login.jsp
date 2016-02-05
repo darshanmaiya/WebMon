@@ -11,31 +11,19 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<form name="loginForm" action="/login" method="post" class="form-inline">
+		<div class="alert alert-success hide" role="alert" id="alert">
+			You have successfully logged out of WebMon.
+		</div>
+		<form name="loginForm" action="/login" method="post" class="form-signin">
 		
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="email">Email: </label>
-				</div>
-				<div class="col-sm-10">
-					<input class="form-control" type="text" required id="email" />
-				</div>
-			</div>
+			<h2 class="form-signin-heading">Log In to WebMon</h2>
+			<input class="form-control" type="text" required autofocus id="email" placeholder="Email" />
+			<input class="form-control" type="password" required id="password" placeholder="Password" />
 			
-			<br /><br />
-			
-			<div class="row">
-				<div class="col-sm-2">
-					<label for="password">Password: </label>
-				</div>
-				<div class="col-sm-10">
-					<input class="form-control" type="password" required id="password" />
-				</div>
-			</div>
-			
-			<br /><br />
-			
-			<input class="btn btn-primary" type="submit" value="Log In" />
+			<button class="btn btn-primary btn-block btn-lg" type="submit">
+				<span>Log In</span>
+				<span class="glyphicon glyphicon-log-in"></span>
+			</button>
 		</form>
 		
 	</div>
