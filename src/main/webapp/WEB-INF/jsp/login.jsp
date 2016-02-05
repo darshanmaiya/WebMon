@@ -11,12 +11,39 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<% if(request.getAttribute("logout") == null) { %>
-			Login
-		<% } else { %>
-			Logout
-		<% } %>
-		<jsp:include page="footer.jsp" />
+		<form name="loginForm" action="/login" method="post" class="form-inline">
+		
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="email">Email: </label>
+				</div>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" required id="email" />
+				</div>
+			</div>
+			
+			<br /><br />
+			
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="password">Password: </label>
+				</div>
+				<div class="col-sm-10">
+					<input class="form-control" type="password" required id="password" />
+				</div>
+			</div>
+			
+			<br /><br />
+			
+			<input class="btn btn-primary" type="submit" value="Log In" />
+		</form>
+		
 	</div>
+	
+	<jsp:include page="footer.jsp" />
+	
+	<script>
+		require(["scripts/login"]);
+	</script>
 </body>
 </html>

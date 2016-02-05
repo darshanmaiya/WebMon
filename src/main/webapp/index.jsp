@@ -59,7 +59,9 @@
 			</h3>
 		</div>
 		
-		<jsp:include page="WEB-INF/jsp/footer.jsp" />
 	</div>
+	
+	
+	<jsp:include page="WEB-INF/jsp/footer.jsp" />
 </body>
 </html>
