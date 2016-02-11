@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="webmon.utils.Constants" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,8 @@
 		<div class="jumbotron">
 			<h1 class="text-danger">Blimey! That's an error :-(</h1>
 			<% if (request.getAttribute("errorCode") != null) { %>
-				<h3 class="text-warning">Status: <strong><%= request.getAttribute("errorCode") %></strong></h3>
-				<h3 class="text-warning">Message: <strong><%= request.getAttribute("errorMessage") %></strong></h3>
+				<h3 class="text-warning">Status: <strong><%= request.getAttribute(Constants.stringErrorCode) %></strong></h3>
+				<h3 class="text-warning">Message: <strong><%= request.getAttribute(Constants.stringErrorMessage) %></strong></h3>
 			<% } else { %>
 				<h3 class="text-warning">Status: <strong>Unknown</strong></h3>
 				<h3 class="text-warning">Message: <strong>Unknown</strong></h3>
