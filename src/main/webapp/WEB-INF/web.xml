@@ -14,8 +14,8 @@
         <servlet-class>webmon.LogInServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogOut</servlet-name>
-        <servlet-class>webmon.LogOutServlet</servlet-class>
+        <servlet-name>Error</servlet-name>
+        <servlet-class>webmon.ErrorServlet</servlet-class>
     </servlet>
 	
 	<servlet>
@@ -44,8 +44,8 @@
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>LogOut</servlet-name>
-        <url-pattern>/logout</url-pattern>
+        <servlet-name>Error</servlet-name>
+        <url-pattern>/error</url-pattern>
     </servlet-mapping>
 	
 	<servlet-mapping>
@@ -53,8 +53,34 @@
 		<url-pattern>/webmon/*</url-pattern>
 	</servlet-mapping>
 	
+	<error-page>
+	    <!-- Missing login -->
+	    <error-code>401</error-code>
+	    <location>/error/401</location>
+	</error-page>
+	<error-page>
+	    <!-- Forbidden directory listing -->
+	    <error-code>403</error-code>
+	    <location>/error/403</location>
+	</error-page>
+	<error-page>
+	    <!-- Missing resource -->
+	    <error-code>404</error-code>
+	    <location>/error/404</location>
+	</error-page>
+	<error-page>
+	    <!-- Uncaught exception -->
+	    <error-code>500</error-code>
+	    <location>/error/500</location>
+	</error-page>
+	<error-page>
+	    <!-- Unsupported servlet method -->
+	    <error-code>503</error-code>
+	    <location>/error/503</location>
+	</error-page>
+	
 	<welcome-file-list>  
     	<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-
+	
 </web-app>

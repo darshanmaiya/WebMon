@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>WebMon - Welcome</title>
+	<title>WebMon - Sign Up</title>
 	
 	<jsp:include page="head.jsp" />
 </head>
