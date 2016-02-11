@@ -25,12 +25,41 @@
 	<servlet>
 		<servlet-name>Jersey REST Service</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		 <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>webmon.core.WebMon</param-value>
+        </init-param>
+        <!-- <init-param>
+	        <param-name>jersey.config.server.mvc.templateBasePath.jsp</param-name>
+	        <param-value>/WEB-INF/jsp</param-value>
+	    </init-param> -->
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>webmon</param-value>
+			<param-value>webmon.core</param-value>
+		</init-param>
+		<init-param>
+		    <param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>org.glassfish.jersey.server.mvc.jsp.JspMvcFeature</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<!-- <filter>
+	    <filter-name>Jersey REST Service</filter-name>
+	    <filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
+	    <init-param>
+	        <param-name>jersey.config.server.provider.packages</param-name>
+	        <param-value>webmon.core</param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>com.sun.jersey.config.property.JSPTemplatesBasePath</param-name>
+	        <param-value>/WEB-INF/jsp</param-value>
+	    </init-param>
+	</filter>
+	<filter-mapping>
+	    <filter-name>jersey</filter-name>
+	    <url-pattern>/webmon/*</url-pattern>
+	</filter-mapping> -->
 	
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
@@ -62,7 +91,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
-    <!-- Filters -->
+    <!-- Filters
     <filter>
 		<filter-name>AuthorizationFilter</filter-name>
 		<filter-class>webmon.filters.AuthorizationFilter</filter-class>
@@ -70,6 +99,6 @@
 	<filter-mapping>
 		<filter-name>AuthorizationFilter</filter-name>
 		<url-pattern>/webmon/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 	
 </web-app>

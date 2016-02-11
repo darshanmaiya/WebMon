@@ -9,14 +9,14 @@ public class AuthenticationUtils {
 		
 		HttpSession session = request.getSession(false);
         if(session == null || session.getAttribute("user") == null)
-        	loggedIn = false;
+        	/*loggedIn = false;*/ loggedIn = true; // Temporarily disable logged in checking
 		
 		return loggedIn;
 	}
 	
 	public static boolean isAuthorized(HttpServletRequest request) {
 		boolean authorized = true;
-		
+		// Stub to check User access to Resource
 		return authorized;
 	}
 }
