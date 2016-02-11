@@ -8,4 +8,8 @@
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
+    
+    <static-error-handlers>
+		<handler file="/WEB-INF/jsp/error.jsp" />
+	</static-error-handlers>
 </appengine-web-app>

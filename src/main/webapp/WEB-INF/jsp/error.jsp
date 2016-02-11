@@ -6,6 +6,8 @@
 	<title>WebMon - Error</title>
 	
 	<jsp:include page="head.jsp" />
+	
+	<link rel="stylesheet" href="../../css/error.css">
 </head>
 <body>
 
@@ -13,9 +15,14 @@
 	<div class="container outer-body">
 	
 		<div class="jumbotron">
-			<h1 class="text-danger">That's an error! :-(</h1>
-			<h3 class="text-danger">Status: <strong><%= request.getAttribute("errorCode") %></strong></h3>
-			<h3 class="text-danger">Message: <strong><%= request.getAttribute("errorMessage") %></strong></h3>
+			<h1 class="text-danger">Blimey! That's an error :-(</h1>
+			<% if (request.getAttribute("errorCode") != null) { %>
+				<h3 class="text-warning">Status: <strong><%= request.getAttribute("errorCode") %></strong></h3>
+				<h3 class="text-warning">Message: <strong><%= request.getAttribute("errorMessage") %></strong></h3>
+			<% } else { %>
+				<h3 class="text-warning">Status: <strong>Unknown</strong></h3>
+				<h3 class="text-warning">Message: <strong>Unknown</strong></h3>
+			<% } %>
 			<p>Click <a href="/">here</a> to go back to the WebMon home page.</p>
 		</div>
 	</div>
