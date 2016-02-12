@@ -11,14 +11,14 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<form name="loginForm" action="/signup" method="post" class="form-signin">
+		<form id="loginForm" name="loginForm" action="/signup" method="post" class="form-signin">
 		
 			<h2 class="form-signin-heading">Sign Up for WebMon</h2>
-			<input class="form-control" type="text" required autofocus id="name" placeholder="Name" />
-			<input class="form-control" type="text" required id="email" placeholder="Email" />
-			<input class="form-control" type="text" required id="phone" placeholder="Phone" />
-			<input class="form-control" type="password" required id="password" placeholder="Password" />
-			<input class="form-control" type="password" required id="re-password" placeholder="Re-enter Password" />
+			<input class="form-control" type="text" required autofocus id="name" name="name" placeholder="Name" />
+			<input class="form-control" type="text" required id="email" name="email" placeholder="Email" />
+			<input class="form-control" type="text" required id="phone" name="phone" placeholder="Phone" />
+			<input class="form-control" type="password" required id="password" name="password" placeholder="Password" />
+			<input class="form-control" type="password" required id="repassword" name="repassword" placeholder="Re-enter Password" />
 			
 			<button class="btn btn-primary btn-block btn-lg" type="submit">
 				<span>Sign Up</span>
