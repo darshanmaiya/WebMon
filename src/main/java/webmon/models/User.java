@@ -1,5 +1,6 @@
 package webmon.models;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -10,6 +11,7 @@ public class User {
   private String phone;
   private String password;
   private int id;
+  private Set<Integer> registeredWebsiteIds;
   
   // Constructors
   public User(){
@@ -63,5 +65,13 @@ public class User {
   
   public void setId(int id){
 	  this.id = id;
+  }
+  
+  public Set<Integer> getRegisteredWebsitesIds(){
+	  return registeredWebsiteIds;
+  }
+  
+  public void setRegisteredWebsiteIds(Set<Integer> registeredWebsiteIds){
+	  this.registeredWebsiteIds = registeredWebsiteIds;
   }
 } 
