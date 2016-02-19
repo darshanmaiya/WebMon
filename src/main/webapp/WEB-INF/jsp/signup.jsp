@@ -20,7 +20,7 @@
 			<input class="form-control" type="password" required id="password" name="password" placeholder="Password" />
 			<input class="form-control" type="password" required id="repassword" name="repassword" placeholder="Re-enter Password" />
 			
-			<button class="btn btn-primary btn-block btn-lg" type="submit">
+			<button class="btn btn-primary btn-block btn-lg" id="submit" type="submit">
 				<span>Sign Up</span>
 				<span class="glyphicon glyphicon-check"></span>
 			</button>
