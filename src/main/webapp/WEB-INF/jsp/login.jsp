@@ -11,9 +11,7 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<div class="alert alert-success hide" role="alert" id="alert">
-			You have successfully logged out of WebMon.
-		</div>
+		<jsp:include page="alert.jsp" />
 		<form name="loginForm" action="/login" method="post" class="form-signin">
 		
 			<h2 class="form-signin-heading">Log In to WebMon</h2>

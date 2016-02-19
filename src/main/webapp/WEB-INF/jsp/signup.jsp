@@ -11,7 +11,8 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<form id="loginForm" name="loginForm" action="/signup" method="post" class="form-signin">
+		<jsp:include page="alert.jsp" />
+		<form id="signupForm" name="signupForm" action="" method="post" class="form-signin">
 		
 			<h2 class="form-signin-heading">Sign Up for WebMon</h2>
 			<input class="form-control" type="text" required autofocus id="name" name="name" placeholder="Name" />

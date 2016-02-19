@@ -1,53 +1,45 @@
-require([], function () {
+require(["scripts/alert"], function (alert) {
 	
-	// Validating user input while signup
+	// Validate user input on signup
     $(document).ready(function() {
     	
-		$('#submit').submit(function(event){
-			// Check for password length requirement. Minimum length of 8
-			pass = $('#password').val();
+		$('#signupForm').submit(function(event) {
+
+			// Check for valid phone no
+			var phoneNo = $('#phone').val();
+			var phoneNoRegex = /^[1-9][0-9]{9}$/;
+			if (phoneNo.length != 10 || !phoneNo.match(phoneNoRegex)) {
+				alert.danger("Invalid Phone Number.");
+				event.preventDefault();
+				
+				return false;
+			}
+			
+			// Check for password length requirement. Minimum length of 6
+			var pass = $('#password').val();
 			var passlength = pass.length;
 
-			if (passlength < 8){
-				alert("Minimum password length required: 8");
-				// Prevent form submission
+			if (passlength < 6) {
+				alert.danger("Minimum password length required: 6");
 				event.preventDefault();
+				
 				return false;
 			}
 			
-			// Check for phone no
-			phoneno = $('#phone').val();
-			var phonelength = phoneno.length();
-			
-			if (phonelength < 10){
-				alert("Invalid phone number: Numbers less than 10");
-				// Prevent form submission
-				event.preventDefault();
-				return false;
-			}
-				
-			var phonenochecker = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
-			if (!phoneno.value.match(phonenochecker))
-			{
-				alert("Invalid phone number");
-				event.preventDefault();
-				return false;
-			}
-				
 			// Check for e-mail id validity
-			mail = $('#email').val();
+			var mail = $('#email').val();
 			
-			if (mail.indexOf('@') === -1)
-			{
-				alert("Invalid mail id");
+			if (mail.indexOf('@') === -1) {
+				alert.danger("Invalid Email.");
 				event.preventDefault();
+				
 				return false;
 			}
 				
 			if($('#password').val() != $('#repassword').val()) {
-				alert("Password and Confirm Password doesn't match");
-				// Prevent form submission
+				alert.danger("Passwords entered don't match.");
 				event.preventDefault();
+				
 				return false;
 			}
 		});
