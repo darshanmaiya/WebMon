@@ -11,6 +11,7 @@ public class WebMon extends Application {
 		
 		Set<Class<?>> classes = new HashSet<Class<?>>();
 		classes.add(Dashboard.class);
+		classes.add(Users.class);
 		classes.add(org.glassfish.jersey.server.mvc.jsp.JspMvcFeature.class);
 		return classes;
 	}
