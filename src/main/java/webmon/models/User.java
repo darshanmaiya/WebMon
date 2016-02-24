@@ -1,12 +1,17 @@
 package webmon.models;
 
+import java.io.Serializable;
 import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.appengine.api.datastore.Entity;
 
 @XmlRootElement
-public class User {
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2290949061273594465L;
 	private String name;
 	private String email;
 	private String phone;
@@ -78,9 +83,10 @@ public class User {
 	}
 	
 	public Entity toEntity () {
-        Entity entity = new Entity("User", getId());
+        Entity entity = new Entity("User", getEmail());
         entity.setProperty("name", getName());
         entity.setProperty("email", getEmail());
+        entity.setProperty("id", getId());
         entity.setProperty("phone", getPhone());
         entity.setProperty("password", getPassword());
         entity.setProperty("monitoredWebsites", getMonitoredWebsites());
@@ -89,9 +95,9 @@ public class User {
 
     @SuppressWarnings("unchecked")
 	public User fromEntity (Entity entity) {
-        setId(Integer.valueOf(entity.getKey().getName()));
         setName((String) entity.getProperty("name"));
         setEmail((String) entity.getProperty("email"));
+        setEmail((String) entity.getProperty("id"));
         setPhone((String) entity.getProperty("phone"));
         setPassword((String) entity.getProperty("password"));
         setMonitoredWebsites((Set<Integer>) entity.getProperty("monitoredWebsites"));

@@ -32,6 +32,8 @@ public class Users {
 		      @FormParam("password") String password,
 		      @Context HttpServletResponse servletResponse) {
 		try {
+			if(DatastoreUtils.checkUser(email))
+				return "User already exists";
 			User newUser = new User(name, email, phone, password);
 			DatastoreUtils.putUser(newUser);
 		} catch (Exception e) {

@@ -1,15 +1,23 @@
 package webmon.models;
 
+import java.io.Serializable;
+
 import com.google.appengine.api.datastore.Entity;
 
+import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
-public class WebMonInfo {
+public class WebMonInfo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2383497804974143721L;
 	private static long numUsers = 0;
 	private static long numWebsites = 0;
 	
 	public static long getNewUserId () {
-		DatastoreUtils.getWebMonInfo();
+		if(numUsers != 0)
+			DatastoreUtils.getWebMonInfo();
 		++WebMonInfo.numUsers;
 		DatastoreUtils.putWebMonInfo();
 		
@@ -25,7 +33,7 @@ public class WebMonInfo {
 	}
 	
 	public static Entity toEntity () {
-        Entity entity = new Entity("WebMonInfo", "WebMonInfoKey");
+        Entity entity = new Entity(Constants.stringWebMonInfo, Constants.stringWebMonInfoKey);
         entity.setProperty("numUsers", numUsers);
         entity.setProperty("numWebsites", numWebsites);
         return entity;
