@@ -16,3 +16,7 @@ form.form-signin .form-signin-heading {
 form.form-signin input:not(:last-child) {
 	margin-bottom: 20px;
 }
+
+.outer-body > .alert {
+    text-align: center;
+}

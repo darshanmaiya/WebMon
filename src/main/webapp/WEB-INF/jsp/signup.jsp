@@ -12,7 +12,7 @@
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
 		<jsp:include page="alert.jsp" />
-		<form id="signupForm" name="signupForm" action="/webmon/users" method="post" class="form-signin">
+		<form id="signupForm" name="signupForm" class="form-signin">
 		
 			<h2 class="form-signin-heading">Sign Up for WebMon</h2>
 			<input class="form-control" type="text" required autofocus id="name" name="name" placeholder="Name" />

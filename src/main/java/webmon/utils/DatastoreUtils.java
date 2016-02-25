@@ -17,6 +17,30 @@ public final class DatastoreUtils {
         	
         	return true;
         } catch (Exception e) {
+        	e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static final boolean checkUserCredentials(String key, String password, User loggedInUser) {
+        try {
+        	Object user = MemcacheUtils.getUser(key);
+        	if(user == null) {
+        		user = datastoreService.get(KeyFactory.createKey(Constants.stringUser, key));
+        	}
+        	
+        	if(user instanceof Entity)
+        		loggedInUser.fromEntity((Entity) user);
+        	else
+        		loggedInUser = (User)user;
+        	
+        	if(loggedInUser.getPassword().equals(password)) {
+        		return true;
+        	}
+        	
+        	return false;
+        } catch (Exception e) {
+        	e.printStackTrace();
             return false;
         }
     }

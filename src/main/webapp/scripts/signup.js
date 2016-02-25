@@ -42,6 +42,24 @@ require(["scripts/alert"], function (alert) {
 				
 				return false;
 			}
+			
+			event.preventDefault();
+			event.stopPropagation();
+			
+			alert.warning("Signing you up for WebMon...hang tight...");
+			
+			$.post("/signup", $(this).serialize(), function (response) {
+				if(response === "User already exists")
+					alert.danger("User with given details already exists. Please try again");
+				else {
+					alert.success("Sign up successful. Redirecting...");
+					setTimeout(function () {
+						location.href = "/login";
+					}, 3000);
+				}
+			});
+			
+			return false;
 		});
 	});
 });

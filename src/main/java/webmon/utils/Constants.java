@@ -17,4 +17,7 @@ public final class Constants {
 	public static final String stringWebMonInfoKey = "WebMonInfoKey";
 	public static final String stringUser = "User";
 	public static final String stringWebsite = "Website";
+
+	public static final String stringUserAdded = "User added successfully";
+	public static final String stringUserExists = "User already exists";
 }

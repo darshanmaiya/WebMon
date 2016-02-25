@@ -11,12 +11,13 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
+		<div class="hide" id="request-parameters"><%= request.getAttribute("parameter") %></div>
 		<jsp:include page="alert.jsp" />
-		<form name="loginForm" action="/login" method="post" class="form-signin">
+		<form name="loginForm" id="loginForm" class="form-signin">
 		
 			<h2 class="form-signin-heading">Log In to WebMon</h2>
-			<input class="form-control" type="text" required autofocus id="email" placeholder="Email" />
-			<input class="form-control" type="password" required id="password" placeholder="Password" />
+			<input class="form-control" type="text" required autofocus id="email" name="email" placeholder="Email" />
+			<input class="form-control" type="password" required id="password" name="password" placeholder="Password" />
 			
 			<button class="btn btn-primary btn-block btn-lg" type="submit">
 				<span>Log In</span>

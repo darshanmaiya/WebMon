@@ -16,8 +16,7 @@ public class WebMonInfo implements Serializable {
 	private static long numWebsites = 0;
 	
 	public static long getNewUserId () {
-		if(numUsers != 0)
-			DatastoreUtils.getWebMonInfo();
+		DatastoreUtils.getWebMonInfo();
 		++WebMonInfo.numUsers;
 		DatastoreUtils.putWebMonInfo();
 		

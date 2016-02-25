@@ -70,7 +70,7 @@ public class User implements Serializable {
 		return id;
 	}
 
-	public void setId (int id){
+	public void setId (long id){
 		this.id = id;
 	}
 	
@@ -97,7 +97,7 @@ public class User implements Serializable {
 	public User fromEntity (Entity entity) {
         setName((String) entity.getProperty("name"));
         setEmail((String) entity.getProperty("email"));
-        setEmail((String) entity.getProperty("id"));
+        setId((long) entity.getProperty("id"));
         setPhone((String) entity.getProperty("phone"));
         setPassword((String) entity.getProperty("password"));
         setMonitoredWebsites((Set<Integer>) entity.getProperty("monitoredWebsites"));

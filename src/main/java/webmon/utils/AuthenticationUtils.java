@@ -9,7 +9,7 @@ public class AuthenticationUtils {
 		
 		HttpSession session = request.getSession(false);
         if(session == null || session.getAttribute("user") == null)
-        	/*loggedIn = false;*/ loggedIn = true; // Temporarily disable logged in checking
+        	loggedIn = false;
 		
 		return loggedIn;
 	}

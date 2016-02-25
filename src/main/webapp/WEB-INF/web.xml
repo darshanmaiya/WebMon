@@ -18,6 +18,10 @@
         <servlet-class>webmon.LogInServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>webmon.LogOutServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Error</servlet-name>
         <servlet-class>webmon.ErrorServlet</servlet-class>
     </servlet>
@@ -53,6 +57,11 @@
     <servlet-mapping>
         <servlet-name>LogIn</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
