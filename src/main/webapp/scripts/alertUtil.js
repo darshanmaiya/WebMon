@@ -1,26 +1,26 @@
-define("scripts/alert", [], function () {
-	var alert = {};
+define("alertUtil", [], function () {
+	var alertUtil = {};
 	
-	alert.hideAll = function () {
+	alertUtil.hideAll = function () {
 		$("#success-alert").addClass("hide");
 		$("#warning-alert").addClass("hide");
 		$("#danger-alert").addClass("hide");
 	}
 	
-	alert.success = function (string) {
-		alert.hideAll();
+	alertUtil.success = function (string) {
+		alertUtil.hideAll();
 		$("#success-alert").text(string).removeClass("hide");
 	}
 	
-	alert.warning = function (string) {
-		alert.hideAll();
+	alertUtil.warning = function (string) {
+		alertUtil.hideAll();
 		$("#warning-alert").text(string).removeClass("hide");
 	}
 	
-	alert.danger = function (string) {
-		alert.hideAll();
+	alertUtil.danger = function (string) {
+		alertUtil.hideAll();
 		$("#danger-alert").text(string).removeClass("hide");
 	}
 	
-	return alert;
+	return alertUtil;
 });

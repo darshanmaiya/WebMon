@@ -11,7 +11,7 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<jsp:include page="alert.jsp" />
+		<jsp:include page="alertUtil.jsp" />
 		<form id="signupForm" name="signupForm" class="form-signin">
 		
 			<h2 class="form-signin-heading">Sign Up for WebMon</h2>
@@ -32,7 +32,7 @@
 	<jsp:include page="footer.jsp" />
 
 	<script>
-		require(["scripts/signup"]);
+		require(["signup"]);
 	</script>
 </body>
 </html>

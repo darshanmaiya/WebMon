@@ -11,9 +11,7 @@
 
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
-		<div class="alert alert-success hide" role="alert" id="alert">
-		
-		</div>
+		<jsp:include page="alertUtil.jsp" />
 		<h2 class="text-muted">Welcome to your WebMon dashboard</h2>
 		<hr class="text-muted" />
 		
@@ -36,9 +34,5 @@
 	</div>
 	
 	<jsp:include page="footer.jsp" />
-	
-	<script>
-		require(["scripts/login"]);
-	</script>
 </body>
 </html>

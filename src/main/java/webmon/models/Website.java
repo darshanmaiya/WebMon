@@ -3,15 +3,16 @@ package webmon.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WebsiteInfo {
+public class Website {
 
 	private long id;
 	private String url;
 	private List<ResponseInfo> responseInfo;
 	private Pinger pinger;
 	private String name;
+	private List<Integer> users;
 	
-	public WebsiteInfo(String url, String name)
+	public Website(String url, String name)
 	{
 		this.id = WebMonInfo.getNewWebsiteId();
 		this.url = url;
@@ -58,5 +59,13 @@ public class WebsiteInfo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Integer> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<Integer> users) {
+		this.users = users;
 	}
 }

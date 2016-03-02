@@ -12,7 +12,7 @@
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
 		<div class="hide" id="request-parameters"><%= request.getAttribute("parameter") %></div>
-		<jsp:include page="alert.jsp" />
+		<jsp:include page="alertUtil.jsp" />
 		<form name="loginForm" id="loginForm" class="form-signin">
 		
 			<h2 class="form-signin-heading">Log In to WebMon</h2>
@@ -30,7 +30,7 @@
 	<jsp:include page="footer.jsp" />
 	
 	<script>
-		require(["scripts/login"]);
+		require(["login"]);
 	</script>
 </body>
 </html>
