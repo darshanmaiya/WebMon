@@ -15,15 +15,15 @@ public class Users {
 	
 	@GET
 	@Path("{id}")
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getUser(@PathParam("id") int id) {
-		return "Users " + id;
+		return "{ \"result\": \"User details for user with id: " + id + "\"}";
 	}
 	
 	@PUT
 	@Path("{id}")
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String updateUser(@PathParam("id") int id) {
-		return "Users PUT" + id;
+		return "{ \"result\": \"Successfully updated user with id: " + id + "\"}";
 	}
 }
