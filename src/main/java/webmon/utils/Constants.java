@@ -20,4 +20,7 @@ public final class Constants {
 
 	public static final String stringUserAdded = "User added successfully";
 	public static final String stringUserExists = "User already exists";
+	
+	public static final String stringWebsiteAdded = "Website added successfully";
+	public static final String stringWebsiteExists = "Website already exists";
 }

@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.appengine.api.datastore.Entity;
 
+import webmon.utils.Constants;
+
 @XmlRootElement
 public class User implements Serializable {
 	/**
@@ -17,7 +19,7 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	private long id;
-	private Set<Integer> monitoredWebsites;
+	private Set<Long> monitoredWebsites;
 	
 	// Constructors
 	public User () {
@@ -30,7 +32,7 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.password = password;
 		this.id = WebMonInfo.getNewUserId();
-		this.monitoredWebsites = new HashSet<Integer>();
+		this.monitoredWebsites = new HashSet<Long>();
 	}
 	
 	// Getters and setters
@@ -74,16 +76,16 @@ public class User implements Serializable {
 		this.id = id;
 	}
 	
-	public Set<Integer> getMonitoredWebsites (){
+	public Set<Long> getMonitoredWebsites (){
 		return monitoredWebsites;
 	}
 	
-	public void setMonitoredWebsites (Set<Integer> monitoredWebsites){
+	public void setMonitoredWebsites (Set<Long> monitoredWebsites){
 		this.monitoredWebsites = monitoredWebsites;
 	}
 	
 	public Entity toEntity () {
-        Entity entity = new Entity("User", getEmail());
+        Entity entity = new Entity(Constants.stringUser, getEmail());
         entity.setProperty("name", getName());
         entity.setProperty("email", getEmail());
         entity.setProperty("id", getId());
@@ -100,7 +102,7 @@ public class User implements Serializable {
         setId((long) entity.getProperty("id"));
         setPhone((String) entity.getProperty("phone"));
         setPassword((String) entity.getProperty("password"));
-        setMonitoredWebsites((Set<Integer>) entity.getProperty("monitoredWebsites"));
+        setMonitoredWebsites((HashSet<Long>) entity.getProperty("monitoredWebsites"));
         return this;
     }
 } 

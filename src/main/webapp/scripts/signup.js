@@ -54,7 +54,7 @@ require(["alertUtil"], function (alertUtil) {
 				else {
 					alertUtil.success("Sign up successful. Redirecting...");
 					setTimeout(function () {
-						location.href = "/login";
+						location.href = "/login?signup=true";
 					}, 1000);
 				}
 			});

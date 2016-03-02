@@ -4,6 +4,7 @@ import com.google.appengine.api.datastore.*;
 
 import webmon.models.User;
 import webmon.models.WebMonInfo;
+import webmon.models.Website;
 
 public final class DatastoreUtils {
 	
@@ -12,8 +13,10 @@ public final class DatastoreUtils {
     public static final boolean checkUser(String key) {
         try {
         	Object user = MemcacheUtils.getUser(key);
-        	if(user == null)
+        	if(user == null) {
         		user = datastoreService.get(KeyFactory.createKey(Constants.stringUser, key));
+        		MemcacheUtils.putUser(new User().fromEntity((Entity) user));
+        	}
         	
         	return true;
         } catch (Exception e) {
@@ -22,16 +25,15 @@ public final class DatastoreUtils {
         }
     }
     
-    public static final boolean checkUserCredentials(String key, String password, User loggedInUser) {
+    public static final boolean checkUserCredentials(String key, String password) {
         try {
+        	User loggedInUser;
         	Object user = MemcacheUtils.getUser(key);
         	if(user == null) {
         		user = datastoreService.get(KeyFactory.createKey(Constants.stringUser, key));
-        	}
-        	
-        	if(user instanceof Entity)
-        		loggedInUser.fromEntity((Entity) user);
-        	else
+        		loggedInUser = new User().fromEntity((Entity) user);
+        		MemcacheUtils.putUser(loggedInUser);
+        	} else
         		loggedInUser = (User)user;
         	
         	if(loggedInUser.getPassword().equals(password)) {
@@ -46,11 +48,16 @@ public final class DatastoreUtils {
     }
     
     public static final User getUser(String key) {
+    	LoggingUtils.logMsg("Get user: " + key);
         try {
         	User user = MemcacheUtils.getUser(key);
         	if(user != null)
         		return user;
-            return new User().fromEntity(datastoreService.get(KeyFactory.createKey(Constants.stringUser, key)));
+        	
+        	user = new User().fromEntity(datastoreService.get(KeyFactory.createKey(Constants.stringUser, key)));
+        	MemcacheUtils.putUser(user);
+        	
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -58,6 +65,7 @@ public final class DatastoreUtils {
     }
     
     public static final void putUser(User user) {
+    	LoggingUtils.logMsg("Store user: " + user.getEmail());
         try {
         	MemcacheUtils.putUser(user);
             datastoreService.put(user.toEntity());
@@ -69,10 +77,13 @@ public final class DatastoreUtils {
     public static final void getWebMonInfo() {
         try {
         	Entity cachedObject = (Entity) MemcacheUtils.getWebMonInfo();
-        	if(cachedObject != null)
+        	if(cachedObject != null) {
         		WebMonInfo.fromEntity(cachedObject);
-        	else
+        	}
+        	else {
         		WebMonInfo.fromEntity(datastoreService.get(KeyFactory.createKey(Constants.stringWebMonInfo, Constants.stringWebMonInfoKey)));
+        		MemcacheUtils.putWebMonInfo();
+        	}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +95,48 @@ public final class DatastoreUtils {
             datastoreService.put(WebMonInfo.toEntity());
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public static final Website getWebsite(String url) {
+    	LoggingUtils.logMsg("Get website: " + url);
+        try {
+        	Website website = MemcacheUtils.getWebsite(url);
+        	if(website != null)
+        		return website;
+        	
+        	website = new Website().fromEntity(datastoreService.get(KeyFactory.createKey(Constants.stringWebsite, url)));
+        	MemcacheUtils.putWebsite(website);
+        	
+            return website;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static final void putWebsite(Website website) {
+    	LoggingUtils.logMsg("Put website: " + website.getUrl());
+        try {
+        	MemcacheUtils.putWebsite(website);
+            datastoreService.put(website.toEntity());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static final boolean checkWebsite(String url) {
+        try {
+        	Object website = MemcacheUtils.getWebsite(url);
+        	if(website == null) {
+        		website = datastoreService.get(KeyFactory.createKey(Constants.stringWebsite, url));
+        		MemcacheUtils.putWebsite(new Website().fromEntity((Entity) website));
+        	}
+        	
+        	return true;
+        } catch (Exception e) {
+        	e.printStackTrace();
+            return false;
         }
     }
 }

@@ -1,23 +1,42 @@
 package webmon.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class Website {
+import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.appengine.api.datastore.Entity;
+
+import webmon.utils.Constants;
+
+@XmlRootElement
+public class Website implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 458515780704922262L;
 	private long id;
 	private String url;
 	private List<ResponseInfo> responseInfo;
 	private Pinger pinger;
 	private String name;
-	private List<Integer> users;
+	private Set<Long> users;
 	
-	public Website(String url, String name)
+	public Website() {
+	}
+	
+	public Website(String url, String name, long user)
 	{
 		this.id = WebMonInfo.getNewWebsiteId();
 		this.url = url;
 		this.name = name;
-		responseInfo = new ArrayList<ResponseInfo>();
+		this.users = new HashSet<Long>();
+		this.users.add(user);
+		this.responseInfo = new ArrayList<ResponseInfo>();
 	}
 
 	public long getId() {
@@ -61,11 +80,31 @@ public class Website {
 		this.name = name;
 	}
 
-	public List<Integer> getUsers() {
+	public Set<Long> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<Integer> users) {
+	public void setUsers(Set<Long> users) {
 		this.users = users;
 	}
+	
+	public Entity toEntity () {
+        Entity entity = new Entity(Constants.stringWebsite, getUrl());
+        entity.setProperty("name", getName());
+        entity.setProperty("url", getUrl());
+        entity.setProperty("id", getId());
+        entity.setProperty("users", getUsers());
+        entity.setProperty("responseInfo", getResponseInfo());
+        return entity;
+    }
+
+    @SuppressWarnings("unchecked")
+	public Website fromEntity (Entity entity) {
+        setName((String) entity.getProperty("name"));
+        setUrl((String) entity.getProperty("url"));
+        setId((long) entity.getProperty("id"));
+        setUsers((HashSet<Long>) entity.getProperty("users"));
+        setResponseInfo((ArrayList<ResponseInfo>) entity.getProperty("responseInfo"));
+        return this;
+    }
 }

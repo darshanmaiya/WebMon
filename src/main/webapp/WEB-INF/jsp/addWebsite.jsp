@@ -12,6 +12,16 @@
 	<jsp:include page="header.jsp" />
 	<div class="container outer-body">
 		<jsp:include page="alertUtil.jsp" />
+		<div class="row">
+			<div class="col-sm-12">
+				<a href="/webmon">
+					<button class="btn btn-link">
+						<span class="glyphicon glyphicon-arrow-left"></span>
+						Back to dashboard
+					</button>
+				</a>
+			</div>
+		</div>
 		<form name="addWebsiteForm" id="addWebsiteForm" class="form-add-website form-signin">
 		
 			<h3 class="form-signin-heading">Add a new website to monitor</h3>

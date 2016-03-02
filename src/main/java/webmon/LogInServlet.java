@@ -2,7 +2,6 @@ package webmon;
 
 import javax.servlet.http.*;
 
-import webmon.models.User;
 import webmon.utils.AuthenticationUtils;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
@@ -17,8 +16,8 @@ public class LogInServlet extends HttpServlet {
 				resp.sendRedirect("/webmon");
 				return;
 			}
-			String referrer = req.getHeader("referer");
-			if(referrer != null && referrer.endsWith("signup"))
+			String referrer = req.getParameter("signup");
+			if(referrer != null && referrer.equals("true"))
 				req.setAttribute("parameter", "signup");
 			req.getRequestDispatcher(Constants.jspRoot + "login.jsp").forward(req, resp);
 		} catch (Exception e) {
@@ -31,11 +30,10 @@ public class LogInServlet extends HttpServlet {
 		try {
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
-			User loggedInUser = new User();
 			
-			if(DatastoreUtils.checkUserCredentials(email, password, loggedInUser)) {
+			if(DatastoreUtils.checkUserCredentials(email, password)) {
 				HttpSession session = req.getSession(true);
-				session.setAttribute("user", loggedInUser);
+				session.setAttribute("user", DatastoreUtils.getUser(email));
 				resp.getWriter().print("success");
 			}
 			else

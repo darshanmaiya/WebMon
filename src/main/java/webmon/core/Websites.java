@@ -1,15 +1,15 @@
 package webmon.core;
 
-import java.io.PrintWriter;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
-//import webmon.models.User;
+import webmon.models.Website;
+import webmon.models.User;
 import webmon.utils.Constants;
-//import webmon.utils.DatastoreUtils;
+import webmon.utils.DatastoreUtils;
 
 //Map this class to /websites route
 @Path("/websites")
@@ -20,6 +20,8 @@ public class Websites {
 	UriInfo uriInfo;
 	@Context
 	Request request;
+	@Context
+	HttpServletRequest httpRequest;
 	
 	@GET
 	@Path("/add")
@@ -43,26 +45,27 @@ public class Websites {
 			@FormParam("notifyDown") String notifyDown,
 			@FormParam("notifyResponse") String notifyResponse,
 			@FormParam("responseTime") String responseTime) {
-		System.out.println(name + " " + url);
+		
 		try {
-			/*String email = req.getParameter("email");
-			
-			if(DatastoreUtils.checkUser(email)) {
-				pw.print(Constants.stringUserExists);
+			User loggedInUser = (User) httpRequest.getSession(false).getAttribute("user");
+			Website website;
+			if(DatastoreUtils.checkWebsite(url)) {
+				website = DatastoreUtils.getWebsite(url);
+				if(website.getUsers().contains(loggedInUser.getId()))
+					return "{ \"result\": \"" + Constants.stringWebsiteExists + "\"}";
 			} else {
-				String name = req.getParameter("name");
-				String phone = req.getParameter("phone");
-				String password = req.getParameter("password");
-				User newUser = new User(name, email, phone, password);
-				DatastoreUtils.putUser(newUser);
-				
-				pw.print(Constants.stringUserAdded);
-			}*/
+				website = new Website(url, name, loggedInUser.getId());
+				DatastoreUtils.putWebsite(website);
+			}
+			
+			loggedInUser.getMonitoredWebsites().add(website.getId());
+			DatastoreUtils.putUser(loggedInUser);
+			
+			return "{ \"result\": \"" + Constants.stringWebsiteAdded + "\"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "{ \"result\": \"fail\"}";
 		}
-		return "{ \"result\": \"Successfully added website\"}";
 	}
 	
 	@PUT
