@@ -3,6 +3,7 @@ package webmon;
 import javax.servlet.http.*;
 
 import webmon.models.User;
+import webmon.utils.AuthenticationUtils;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
@@ -12,6 +13,10 @@ public class LogInServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try {
+			if(AuthenticationUtils.isLoggedIn(req)) {
+				resp.sendRedirect("/webmon");
+				return;
+			}
 			String referrer = req.getHeader("referer");
 			if(referrer != null && referrer.endsWith("signup"))
 				req.setAttribute("parameter", "signup");

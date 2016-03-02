@@ -9,9 +9,9 @@ import java.util.List;
 public class Pinger
 {
 	private ScheduledExecutorService service;
-	private static int pingTime = 1;
+	private static int pingTime = 1; // (Minutes)
 	
-    public static boolean checkConnection(String url){
+    public static boolean checkConnection (String url) {
         
         try {
         	URL siteUrl = new URL(url);

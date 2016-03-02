@@ -25,6 +25,8 @@ public class AuthorizationFilter implements Filter  {
             	request.setAttribute(Constants.stringErrorCode, Constants.stringError401);
             	request.setAttribute(Constants.stringErrorMessage, Constants.stringError401NotLoggedIn);
             	
+            	((HttpServletResponse)response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            	
             	request.getRequestDispatcher("/error").forward(request, response);
             	return;
             }
@@ -33,6 +35,8 @@ public class AuthorizationFilter implements Filter  {
             	
             	request.setAttribute(Constants.stringErrorCode, Constants.stringError401);
             	request.setAttribute(Constants.stringErrorMessage, Constants.stringError401Unauthorized);
+            	
+            	((HttpServletResponse)response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             	
             	request.getRequestDispatcher("/error").forward(request, response);
             	return;

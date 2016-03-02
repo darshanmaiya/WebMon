@@ -20,7 +20,7 @@ require(["scripts/alert"], function (alert) {
 				alert.success("Login successful. Redirecting...");
 				setTimeout(function () {
 					location.href = "/webmon";
-				}, 3000);
+				}, 1000);
 			}
 		});
 		

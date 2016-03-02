@@ -24,6 +24,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user.getName() %> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><a href="/webmon">Go to Dashboard</a></li>
 							<li><a href="/webmon/users/<%= user.getId() %>">View profile</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/logout">Logout</a></li>

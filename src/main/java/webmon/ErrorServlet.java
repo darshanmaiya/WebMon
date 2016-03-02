@@ -14,6 +14,8 @@ public class ErrorServlet extends HttpServlet {
 			if(errorCode == null || errorCode.equals("null") || errorCode.equals("")) {
 				req.setAttribute(Constants.stringErrorCode, Constants.stringError404);
 				req.setAttribute(Constants.stringErrorMessage, Constants.stringError404Desc);
+				
+				resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			}
 			
 			req.getRequestDispatcher(Constants.jspRoot + "error.jsp").forward(req, resp);

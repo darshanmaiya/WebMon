@@ -55,7 +55,7 @@ require(["scripts/alert"], function (alert) {
 					alert.success("Sign up successful. Redirecting...");
 					setTimeout(function () {
 						location.href = "/login";
-					}, 3000);
+					}, 1000);
 				}
 			});
 			

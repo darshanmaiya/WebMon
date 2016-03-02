@@ -7,28 +7,17 @@ public class WebsiteInfo {
 
 	private long id;
 	private String url;
-//	private int pingTime; // In minutes
 	private List<ResponseInfo> responseInfo;
 	private Pinger pinger;
+	private String name;
 	
-	WebsiteInfo(String url)
+	public WebsiteInfo(String url, String name)
 	{
 		this.id = WebMonInfo.getNewWebsiteId();
 		this.url = url;
-	//	this.pingTime = pingTime;
+		this.name = name;
 		responseInfo = new ArrayList<ResponseInfo>();
 	}
-	
-	/*public void setPingTime(int pingTime){
-		this.pingTime = pingTime;
-		
-		this.stopMonitoring();
-		this.startMonitoring();
-	}
-	
-	public int getPingTime(){
-		return this.pingTime;
-	}*/
 
 	public long getId() {
 		return id;
@@ -61,5 +50,13 @@ public class WebsiteInfo {
 	
 	public void stopMonitoring(){
 		this.pinger.stopService();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
