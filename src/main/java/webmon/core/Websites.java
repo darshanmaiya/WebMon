@@ -43,8 +43,7 @@ public class Websites {
 	public String saveWebsite(@FormParam("name") String name,
 			@FormParam("url") String url,
 			@FormParam("notifyDown") String notifyDown,
-			@FormParam("notifyResponse") String notifyResponse,
-			@FormParam("responseTime") String responseTime) {
+			@FormParam("notifyResponse") String notifyResponse) {
 		
 		try {
 			User loggedInUser = (User) httpRequest.getSession(false).getAttribute("user");
@@ -54,7 +53,7 @@ public class Websites {
 				if(website.getUsers().contains(loggedInUser.getId()))
 					return "{ \"result\": \"" + Constants.stringWebsiteExists + "\"}";
 			} else {
-				website = new Website(url, name, loggedInUser.getId());
+				website = new Website(url, name, loggedInUser.getId(), (notifyDown != null), (notifyResponse != null));
 				DatastoreUtils.putWebsite(website);
 			}
 			
