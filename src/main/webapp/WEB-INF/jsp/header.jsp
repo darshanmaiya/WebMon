@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="webmon.utils.AuthenticationUtils" %>
+<%@ page import="webmon.utils.DatastoreUtils" %>
 <%@ page import="webmon.models.User" %>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
@@ -20,7 +21,7 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 				<% if(AuthenticationUtils.isLoggedIn(request)) { %>
-				<% User user = (User) request.getSession(false).getAttribute("user"); %>
+				<% User user = DatastoreUtils.getUser(String.valueOf(request.getSession(false).getAttribute("user"))); %>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user.getName() %> <span class="caret"></span></a>
 						<ul class="dropdown-menu">

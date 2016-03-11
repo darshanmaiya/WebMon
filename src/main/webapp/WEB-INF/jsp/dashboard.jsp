@@ -20,7 +20,7 @@
 		<hr class="text-muted" />
 		
 		<div class="row">
-			<% User user = (User) request.getSession(false).getAttribute("user"); %>
+			<% User user = DatastoreUtils.getUser(String.valueOf(request.getSession(false).getAttribute("user"))); %>
 			<% List<Long> monitoredWebsites = user.getMonitoredWebsites(); %>
 			<% int numMonitoredWebsites = monitoredWebsites.size(); %>
 			<div class="col-sm-8">

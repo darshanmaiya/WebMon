@@ -46,7 +46,7 @@ public class Websites {
 			@FormParam("notifyResponse") String notifyResponse) {
 		
 		try {
-			User loggedInUser = (User) httpRequest.getSession(false).getAttribute("user");
+			User loggedInUser = DatastoreUtils.getUser(String.valueOf(httpRequest.getSession(false).getAttribute("user")));
 			Website website;
 			if(DatastoreUtils.checkWebsite(url)) {
 				website = DatastoreUtils.getWebsite(url);

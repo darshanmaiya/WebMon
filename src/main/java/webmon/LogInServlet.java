@@ -33,7 +33,7 @@ public class LogInServlet extends HttpServlet {
 			
 			if(DatastoreUtils.checkUserCredentials(email, password)) {
 				HttpSession session = req.getSession(true);
-				session.setAttribute("user", DatastoreUtils.getUser(email));
+				session.setAttribute("user", email);
 				resp.getWriter().print("success");
 			}
 			else

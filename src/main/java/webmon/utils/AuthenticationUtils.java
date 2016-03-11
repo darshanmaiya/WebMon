@@ -22,7 +22,7 @@ public class AuthenticationUtils {
 		if(!isLoggedIn(request))
 			authorized = false;
 		else {
-			User user = (User)request.getSession(false).getAttribute("user");
+			User user = DatastoreUtils.getUser(String.valueOf(request.getSession(false).getAttribute("user")));
 			// Requested resource is user
 			String requestURL = request.getRequestURL().toString();
 	        if(requestURL.matches("^.*webmon/users/[0-9]+$")) {
