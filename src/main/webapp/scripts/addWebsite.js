@@ -14,7 +14,7 @@ require(["alertUtil"], function (alertUtil) {
 				alertUtil.success("Website added successfully. Redirecting back to dashboard...");
 				setTimeout(function () {
 					location.href = "/webmon";
-				}, 2000);
+				}, 1000);
 			}
 		});
 		

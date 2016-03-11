@@ -19,7 +19,7 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	private long id;
-	private Set<Long> monitoredWebsites;
+	private List<Long> monitoredWebsites;
 	
 	// Constructors
 	public User () {
@@ -32,7 +32,7 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.password = password;
 		this.id = WebMonInfo.getNewUserId();
-		this.monitoredWebsites = new HashSet<Long>();
+		this.monitoredWebsites = new ArrayList<Long>();
 	}
 	
 	// Getters and setters
@@ -76,11 +76,11 @@ public class User implements Serializable {
 		this.id = id;
 	}
 	
-	public Set<Long> getMonitoredWebsites (){
+	public List<Long> getMonitoredWebsites (){
 		return monitoredWebsites;
 	}
 	
-	public void setMonitoredWebsites (Set<Long> monitoredWebsites){
+	public void setMonitoredWebsites (ArrayList<Long> monitoredWebsites){
 		this.monitoredWebsites = monitoredWebsites;
 	}
 	
@@ -102,7 +102,7 @@ public class User implements Serializable {
         setId((long) entity.getProperty("id"));
         setPhone((String) entity.getProperty("phone"));
         setPassword((String) entity.getProperty("password"));
-        setMonitoredWebsites((HashSet<Long>) entity.getProperty("monitoredWebsites"));
+        setMonitoredWebsites((ArrayList<Long>) entity.getProperty("monitoredWebsites"));
         return this;
     }
 } 

@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="webmon.models.User" %>
+<%@ page import="webmon.models.Website" %>
+<%@ page import="webmon.utils.DatastoreUtils" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +20,11 @@
 		<hr class="text-muted" />
 		
 		<div class="row">
+			<% User user = (User) request.getSession(false).getAttribute("user"); %>
+			<% List<Long> monitoredWebsites = user.getMonitoredWebsites(); %>
+			<% int numMonitoredWebsites = monitoredWebsites.size(); %>
 			<div class="col-sm-8">
-				<h5>You are currently monitoring &lt;&gt; websites.</h5>
+				<h5>You are currently monitoring <strong><%= numMonitoredWebsites %></strong> websites.</h5>
 			</div>
 			<div class="col-sm-4 text-right">
 				<a href="webmon/websites/add">
@@ -29,8 +36,42 @@
 			</div>
 		</div>
 		<br /><br />
-		<h4>Websites you are monitoring:</h4>
-		
+		<% if (numMonitoredWebsites == 0) { %>
+			<h4>You are not monitoring any websites. Add a website to get started.</h4>
+		<% } else { %>
+			<h4>Websites you are monitoring:</h4>
+			<br />
+			<% for (int i=0; i<numMonitoredWebsites; i++) { %>
+				<div class="row website-row">
+					<% Website website = DatastoreUtils.getWebsite(monitoredWebsites.get(i)); %>
+					<div class="col-md-8">
+						<a class="btn btn-link" href="/webmon/websites/<%= website.getId() %>">
+							<span title="<%= website.getUrl() %>"><%= website.getName() %></span>
+						</a>
+					</div>
+					<div class="col-md-4" style="text-align: right">
+						<a class="btn btn-link" href="<%= website.getUrl() %>" target="_blank">
+							<span class="glyphicon glyphicon-new-window"></span>
+						</a>
+						<% if (!website.getIsBeingMonitored().get(website.getUsers().indexOf(user.getId()))) { %>
+							<button class="btn btn-link" style="color: green">
+								<span class="glyphicon glyphicon-play"></span>
+							</button>
+						<% } else { %>
+							<button class="btn btn-link hide" style="color: red">
+								<span class="glyphicon glyphicon-stop"></span>
+							</button>
+						<% } %>
+						<button class="btn btn-link">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						<button class="btn btn-link" style="color: red">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			<% } %>
+		<% } %>
 	</div>
 	
 	<jsp:include page="footer.jsp" />

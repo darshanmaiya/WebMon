@@ -34,3 +34,15 @@ form.form-signin button {
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Raleway', sans-serif;
 }
+
+.website-row:not(:last-child) {
+	border-bottom: solid 1px #EEE;
+}
+
+.website-row:hover {
+	background-color: #ffffb3;
+}
+
+.website-row button:hover, .website-row .col-md-4 a:hover {
+	background-color: #DDD;
+}

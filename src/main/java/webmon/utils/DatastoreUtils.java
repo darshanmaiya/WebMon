@@ -1,6 +1,7 @@
 package webmon.utils;
 
 import com.google.appengine.api.datastore.*;
+import com.google.appengine.api.datastore.Query.*;
 
 import webmon.models.User;
 import webmon.models.WebMonInfo;
@@ -58,6 +59,27 @@ public final class DatastoreUtils {
         	MemcacheUtils.putUser(user);
         	
             return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static final User getUser(long id) {
+    	LoggingUtils.logMsg("Get user: " + id);
+        try {
+        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+        	Filter idFilter = new FilterPredicate("id", FilterOperator.EQUAL, id);
+        	
+        	Query q = new Query(Constants.stringUser).setFilter(idFilter);
+        	PreparedQuery pq = datastore.prepare(q);
+
+        	for (Entity result : pq.asIterable()) {
+        	  return new User().fromEntity(result);
+        	}
+        	
+        	return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -137,6 +159,27 @@ public final class DatastoreUtils {
         } catch (Exception e) {
         	e.printStackTrace();
             return false;
+        }
+    }
+    
+    public static final Website getWebsite(long id) {
+    	LoggingUtils.logMsg("Get website: " + id);
+        try {
+        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+        	Filter idFilter = new FilterPredicate("id", FilterOperator.EQUAL, id);
+        	
+        	Query q = new Query(Constants.stringWebsite).setFilter(idFilter);
+        	PreparedQuery pq = datastore.prepare(q);
+
+        	for (Entity result : pq.asIterable()) {
+        	  return new Website().fromEntity(result);
+        	}
+        	
+        	return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

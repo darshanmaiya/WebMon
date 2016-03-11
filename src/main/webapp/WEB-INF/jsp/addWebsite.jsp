@@ -29,7 +29,7 @@
 			<input class="form-control" type="text" required id="url" name="url" placeholder="URL" />
 			
 			<label><input type="checkbox" name="notifyDown" checked value="notifyDown" /> Notify me when this website is down</label>
-			<label><input type="checkbox" name="notifyResponse" checked value="notifyResponse" /> Notify me when the response time is higher than <input value="10" name="responseTime" style="width: 25px" /> seconds</label>
+			<label><input type="checkbox" name="notifyResponse" checked value="notifyResponse" /> Notify me when the response time is high</label>
 			
 			<button class="btn btn-primary btn-block btn-lg" type="submit">
 				<span>Add website</span>
