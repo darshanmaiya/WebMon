@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<cronentries>
+  <!-- <cron>
+    <url>/response</url>
+    <description>Get website response times</description>
+    <schedule>every 2 minutes</schedule>
+  </cron> -->
+</cronentries>

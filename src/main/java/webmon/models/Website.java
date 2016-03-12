@@ -1,10 +1,13 @@
 package webmon.models;
 
-import java.io.Serializable;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.appengine.api.datastore.EmbeddedEntity;
 import com.google.appengine.api.datastore.Entity;
 
 import webmon.utils.Constants;
@@ -19,13 +22,12 @@ public class Website implements Serializable {
 	private long id;
 	private String url;
 	private List<ResponseInfo> responseInfo;
-	private Pinger pinger;
 	private String name;
 	private List<Long> users;
 	private List<Boolean> notifyWhenDown;
 	private List<Boolean> notifyWhenResponseIsHigh;
 	private List<Boolean> isBeingMonitored;
-	public static long numUsersMonitoring;
+	private final int RESPONSE_THRESHOLD = 10; // (in seconds)
 	
 	public Website() {
 	}
@@ -44,8 +46,6 @@ public class Website implements Serializable {
 		this.notifyWhenResponseIsHigh.add(notifyWhenResponseIsHigh);
 		this.isBeingMonitored.add(false);
 		this.responseInfo = new ArrayList<ResponseInfo>();
-		
-		Website.numUsersMonitoring++;
 	}
 
 	public long getId() {
@@ -72,15 +72,38 @@ public class Website implements Serializable {
 		this.responseInfo = responseInfo;
 	}
 	
-	public void startMonitoring(){
-		this.pinger = new Pinger();
-		this.pinger.startService(url, responseInfo);
+	public void getResponseTime () {
+		long responseTime = 0;
+		try {
+			URL url = new URL(this.url);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+        	connection.setConnectTimeout(1000 * RESPONSE_THRESHOLD);   // 10 seconds
+        	
+			long startTime = System.currentTimeMillis();
+			
+		    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		    while (reader.readLine() != null)
+		    	;
+		    reader.close();
+		    long endTime = System.currentTimeMillis();
+		    
+		    int code = connection.getResponseCode();
+	       	if (code >= 200 && code < 400) {
+	        	responseTime = endTime - startTime;
+	        } else {
+	        	responseTime = -1 * code;
+	        }
+		} catch(Exception e) {
+			 e.printStackTrace();
+			 responseTime = -1;
+		}
+
+        // Create responseInfo object
+		ResponseInfo now = new ResponseInfo(responseTime);
+		responseInfo.add(now);
 	}
 	
-	public void stopMonitoring(){
-		this.pinger.stopService();
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -139,7 +162,7 @@ public class Website implements Serializable {
         entity.setProperty("notifyWhenDown", getNotifyWhenDown());
         entity.setProperty("notifyWhenResponseIsHigh", getNotifyWhenResponseIsHigh());
         entity.setProperty("isBeingMonitored", getIsBeingMonitored());
-        entity.setProperty("responseInfo", getResponseInfo());
+        entity.setProperty("responseInfo", ResponseInfo.toEmbeddedEntity(getResponseInfo()));
         return entity;
     }
 
@@ -152,7 +175,25 @@ public class Website implements Serializable {
         setNotifyWhenDown((List<Boolean>) entity.getProperty("notifyWhenDown"));
         setNotifyWhenResponseIsHigh((List<Boolean>) entity.getProperty("notifyWhenResponseIsHigh"));
         setIsBeingMonitored((List<Boolean>) entity.getProperty("isBeingMonitored"));
-        setResponseInfo((ArrayList<ResponseInfo>) entity.getProperty("responseInfo"));
+        Object ris = entity.getProperty("responseInfo");
+        if(ris != null)
+        	setResponseInfo(ResponseInfo.fromEmbeddedEntity((ArrayList<EmbeddedEntity>) ris));
+        
+        if(users == null)
+        	this.users = new ArrayList<Long>();
+        
+        if(notifyWhenDown == null)
+        	this.notifyWhenDown = new ArrayList<Boolean>();
+        
+        if(notifyWhenResponseIsHigh == null)
+        	this.notifyWhenResponseIsHigh = new ArrayList<Boolean>();
+        
+        if(isBeingMonitored == null)
+        	this.isBeingMonitored = new ArrayList<Boolean>();
+        
+        if(responseInfo == null)
+        	this.responseInfo = new ArrayList<ResponseInfo>();
+        
         return this;
     }
 }

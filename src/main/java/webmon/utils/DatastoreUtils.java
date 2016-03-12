@@ -1,5 +1,8 @@
 package webmon.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.*;
 
@@ -180,6 +183,37 @@ public final class DatastoreUtils {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    public static final List<Website> getAllWebsites() {
+    	LoggingUtils.logMsg("Get all websites");
+        try {
+        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+        	Query q = new Query(Constants.stringWebsite);
+        	PreparedQuery pq = datastore.prepare(q);
+
+        	List<Website> allWebsites = new ArrayList<Website>();
+        	
+        	for (Entity result : pq.asIterable()) {
+        		allWebsites.add(new Website().fromEntity(result));
+        	}
+        	
+        	return allWebsites;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static final void deleteWebsite(String key) {
+    	LoggingUtils.logMsg("Delete website with key: " + key);
+        try {
+        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        	datastore.delete(KeyFactory.createKey(Constants.stringWebsite, key));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

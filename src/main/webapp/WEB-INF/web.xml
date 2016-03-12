@@ -22,6 +22,10 @@
         <servlet-class>webmon.LogOutServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ResponseTime</servlet-name>
+        <servlet-class>webmon.ResponseTimeServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Error</servlet-name>
         <servlet-class>webmon.ErrorServlet</servlet-class>
     </servlet>
@@ -62,6 +66,11 @@
     <servlet-mapping>
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ResponseTime</servlet-name>
+        <url-pattern>/response</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
