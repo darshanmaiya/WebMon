@@ -20,6 +20,7 @@ public class User implements Serializable {
 	private String password;
 	private long id;
 	private List<Long> monitoredWebsites;
+	private List<Integer> monitorWebsiteStart;
 	
 	// Constructors
 	public User () {
@@ -33,6 +34,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.id = WebMonInfo.getNewUserId();
 		this.monitoredWebsites = new ArrayList<Long>();
+		this.setMonitorWebsiteStart(new ArrayList<Integer>());
 	}
 	
 	// Getters and setters
@@ -83,6 +85,14 @@ public class User implements Serializable {
 	public void setMonitoredWebsites (ArrayList<Long> monitoredWebsites){
 		this.monitoredWebsites = monitoredWebsites;
 	}
+
+	public List<Integer> getMonitorWebsiteStart() {
+		return monitorWebsiteStart;
+	}
+
+	public void setMonitorWebsiteStart(ArrayList<Integer> monitorWebsiteStart) {
+		this.monitorWebsiteStart = monitorWebsiteStart;
+	}
 	
 	public Entity toEntity () {
         Entity entity = new Entity(Constants.stringUser, getEmail());
@@ -92,6 +102,7 @@ public class User implements Serializable {
         entity.setProperty("phone", getPhone());
         entity.setProperty("password", getPassword());
         entity.setProperty("monitoredWebsites", getMonitoredWebsites());
+        entity.setProperty("monitorWebsiteStart", getMonitorWebsiteStart());
         return entity;
     }
 
@@ -103,6 +114,7 @@ public class User implements Serializable {
         setPhone((String) entity.getProperty("phone"));
         setPassword((String) entity.getProperty("password"));
         setMonitoredWebsites((ArrayList<Long>) entity.getProperty("monitoredWebsites"));
+        setMonitorWebsiteStart((ArrayList<Integer>) entity.getProperty("monitorWebsiteStart"));
         return this;
     }
 } 

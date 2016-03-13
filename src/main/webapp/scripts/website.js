@@ -23,11 +23,17 @@ require(["alertUtil"], function (alertUtil) {
 			$("#notifyResponse").prop("checked", true);
 		
 		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawChart);
 		
 		var responseInfos = [["Timestamp", "Response Time"]];
 		var i;
 		var len = website.responseInfo.length;
+		if(len === 0) {
+			alertUtil.warning("This website doesn't have any monitored data as of now. Please check back after some time.");
+			return;
+		}
+
+		google.charts.setOnLoadCallback(drawChart);
+		
 		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 		                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 		                ];

@@ -9,6 +9,7 @@ import javax.ws.rs.core.*;
 import org.glassfish.jersey.server.mvc.Viewable;
 
 import webmon.models.Website;
+import webmon.models.ResponseInfo;
 import webmon.models.User;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
@@ -47,6 +48,14 @@ public class Websites {
 		website.setNotifyWhenResponseIsHigh(notifyWhenResponseIsHigh);
 		website.setNotifyWhenDown(notifyWhenDown);
 		
+		int websiteIndex = user.getMonitoredWebsites().indexOf(website.getId());
+		int websiteIndexInUser = user.getMonitorWebsiteStart().get(websiteIndex);
+		
+		List<ResponseInfo> responseInfo = new ArrayList<ResponseInfo>();
+		if(websiteIndexInUser < website.getResponseInfo().size())
+			responseInfo.addAll(website.getResponseInfo().subList(websiteIndexInUser, website.getResponseInfo().size()));
+		website.setResponseInfo(responseInfo);
+		
 		return website;
 	}
 	@GET
@@ -71,12 +80,15 @@ public class Websites {
 				website = DatastoreUtils.getWebsite(url);
 				if(website.getUsers().contains(loggedInUser.getId()))
 					return "{ \"result\": \"" + Constants.stringWebsiteExists + "\"}";
+				else
+					website.addUser(loggedInUser.getId(), (notifyDown != null), (notifyResponse != null));
 			} else {
 				website = new Website(url, name, loggedInUser.getId(), (notifyDown != null), (notifyResponse != null));
-				DatastoreUtils.putWebsite(website);
 			}
 			
+			DatastoreUtils.putWebsite(website);
 			loggedInUser.getMonitoredWebsites().add(website.getId());
+			loggedInUser.getMonitorWebsiteStart().add(website.getResponseInfo().size());
 			DatastoreUtils.putUser(loggedInUser);
 			
 			return "{ \"result\": \"" + Constants.stringWebsiteAdded + "\"}";
