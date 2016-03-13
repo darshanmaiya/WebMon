@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.*;
 
-import com.google.appengine.api.ThreadManager;
+import com.google.appengine.api.taskqueue.*;
 
 import webmon.models.Website;
 import webmon.utils.DatastoreUtils;
@@ -16,15 +16,17 @@ public class ResponseTimeServlet extends HttpServlet {
 	private int i = 0;
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
+
 		for(i=0; i<allWebsites.size(); i++) {
-			if(allWebsites.get(i).getUsers().size() == 0) {
-				DatastoreUtils.deleteWebsite(allWebsites.get(i).getUrl());
+			Website website = allWebsites.get(i);
+			if(website.getUsers().size() == 0) {
+				DatastoreUtils.deleteWebsite(website.getUrl());
 				continue;
 			}
-			ThreadManager.createBackgroundThread(
-				new Pinger(i, allWebsites))
-			.start();
+			
+			Queue queue = QueueFactory.getDefaultQueue();
+	        queue.add(TaskOptions.Builder.withUrl("/pinger")
+					.param("id", String.valueOf(website.getId())));
 		}
 	}
 }

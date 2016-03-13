@@ -74,4 +74,14 @@ public final class MemcacheUtils {
             e.printStackTrace();
         }
     }
+    
+    public static void deleteWebsite(String url) {
+
+    	syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
+        try {
+        	syncCache.delete(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

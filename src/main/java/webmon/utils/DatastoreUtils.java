@@ -71,12 +71,10 @@ public final class DatastoreUtils {
     public static final User getUser(long id) {
     	LoggingUtils.logMsg("Get user: " + id);
         try {
-        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
         	Filter idFilter = new FilterPredicate("id", FilterOperator.EQUAL, id);
         	
         	Query q = new Query(Constants.stringUser).setFilter(idFilter);
-        	PreparedQuery pq = datastore.prepare(q);
+        	PreparedQuery pq = datastoreService.prepare(q);
 
         	for (Entity result : pq.asIterable()) {
         	  return new User().fromEntity(result);
@@ -168,12 +166,10 @@ public final class DatastoreUtils {
     public static final Website getWebsite(long id) {
     	LoggingUtils.logMsg("Get website: " + id);
         try {
-        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
         	Filter idFilter = new FilterPredicate("id", FilterOperator.EQUAL, id);
         	
         	Query q = new Query(Constants.stringWebsite).setFilter(idFilter);
-        	PreparedQuery pq = datastore.prepare(q);
+        	PreparedQuery pq = datastoreService.prepare(q);
 
         	for (Entity result : pq.asIterable()) {
         	  return new Website().fromEntity(result);
@@ -189,10 +185,8 @@ public final class DatastoreUtils {
     public static final List<Website> getAllWebsites() {
     	LoggingUtils.logMsg("Get all websites");
         try {
-        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
         	Query q = new Query(Constants.stringWebsite);
-        	PreparedQuery pq = datastore.prepare(q);
+        	PreparedQuery pq = datastoreService.prepare(q);
 
         	List<Website> allWebsites = new ArrayList<Website>();
         	
@@ -207,11 +201,11 @@ public final class DatastoreUtils {
         }
     }
     
-    public static final void deleteWebsite(String key) {
-    	LoggingUtils.logMsg("Delete website with key: " + key);
+    public static final void deleteWebsite(String url) {
+    	LoggingUtils.logMsg("Delete website with key: " + url);
         try {
-        	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        	datastore.delete(KeyFactory.createKey(Constants.stringWebsite, key));
+        	MemcacheUtils.deleteWebsite(url);
+        	datastoreService.delete(KeyFactory.createKey(Constants.stringWebsite, url));
         } catch (Exception e) {
             e.printStackTrace();
         }

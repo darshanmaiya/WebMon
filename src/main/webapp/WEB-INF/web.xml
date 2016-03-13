@@ -26,6 +26,10 @@
         <servlet-class>webmon.ResponseTimeServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>PingerServlet</servlet-name>
+        <servlet-class>webmon.PingerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Error</servlet-name>
         <servlet-class>webmon.ErrorServlet</servlet-class>
     </servlet>
@@ -71,6 +75,11 @@
     <servlet-mapping>
         <servlet-name>ResponseTime</servlet-name>
         <url-pattern>/response</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PingerServlet</servlet-name>
+        <url-pattern>/pinger</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
