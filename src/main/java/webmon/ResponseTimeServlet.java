@@ -28,5 +28,7 @@ public class ResponseTimeServlet extends HttpServlet {
 	        queue.add(TaskOptions.Builder.withUrl("/pinger")
 					.param("id", String.valueOf(website.getId())));
 		}
+		
+		resp.sendRedirect("/");
 	}
 }

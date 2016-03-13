@@ -22,5 +22,7 @@ public class PingerServlet extends HttpServlet {
         Website website = DatastoreUtils.getWebsite(id);
         website.getResponseTime();
 		DatastoreUtils.putWebsite(website);
+		
+		response.sendRedirect("/");
     }
 }
