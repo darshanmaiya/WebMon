@@ -50,22 +50,13 @@
 						</a>
 					</div>
 					<div class="col-md-4" style="text-align: right">
-						<a class="btn btn-link" href="<%= website.getUrl() %>" target="_blank">
+						<a title="Go to website" class="btn btn-link" href="<%= website.getUrl() %>" target="_blank">
 							<span class="glyphicon glyphicon-new-window"></span>
 						</a>
-						<% if (!website.getIsBeingMonitored().get(website.getUsers().indexOf(user.getId()))) { %>
-							<button class="btn btn-link" style="color: green">
-								<span class="glyphicon glyphicon-play"></span>
-							</button>
-						<% } else { %>
-							<button class="btn btn-link hide" style="color: red">
-								<span class="glyphicon glyphicon-stop"></span>
-							</button>
-						<% } %>
-						<button class="btn btn-link">
+						<button title="Edit website" class="btn btn-link">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button>
-						<button class="btn btn-link" style="color: red">
+						<button title="Remove website" class="btn btn-link" style="color: red">
 							<span class="glyphicon glyphicon-remove"></span>
 						</button>
 					</div>

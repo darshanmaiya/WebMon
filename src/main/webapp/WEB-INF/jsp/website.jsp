@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>WebMon - Add new website to monitor</title>
+	<title>WebMon - Website statistics</title>
 	
 	<jsp:include page="head.jsp" />
 </head>
@@ -24,25 +24,27 @@
 		</div>
 		<form name="addWebsiteForm" id="addWebsiteForm" class="form-add-website form-signin">
 		
-			<h3 class="form-signin-heading">Add a new website to monitor</h3>
-			<input class="form-control" type="text" required autofocus id="name" name="name" placeholder="Name" />
-			<input class="form-control" type="text" required id="url" name="url" placeholder="URL" />
+			<input class="form-control" type="text" required readonly autofocus id="name" name="name" placeholder="Name" />
+			<input class="form-control" type="text" required readonly id="url" name="url" placeholder="URL" />
 			
-			<label><input type="checkbox" name="notifyDown" checked value="notifyDown" /> Notify me when this website is down</label>
-			<label><input type="checkbox" name="notifyResponse" checked value="notifyResponse" /> Notify me when the response time is high</label>
+			<label><input type="checkbox" id="notifyDown" name="notifyDown" value="notifyDown" /> Notify me when this website is down</label>
+			<label><input type="checkbox" id="notifyResponse" name="notifyResponse" value="notifyResponse" /> Notify me when the response time is high</label>
 			
 			<button class="btn btn-primary btn-block btn-lg" type="submit">
-				<span class="glyphicon glyphicon-plus"></span>
-				<span>Add website</span>
+				<span class="glyphicon glyphicon-floppy-disk"></span>
+				<span>Update website</span>
 			</button>
 		</form>
+		
+		<div id="line_chart" style="width: 100%; height: 500px"></div>
 		
 	</div>
 	
 	<jsp:include page="footer.jsp" />
 	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script>
-		require(["addWebsite"]);
+		require(["website"]);
 	</script>
 </body>
 </html>

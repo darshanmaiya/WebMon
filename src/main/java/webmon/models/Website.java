@@ -26,7 +26,6 @@ public class Website implements Serializable {
 	private List<Long> users;
 	private List<Boolean> notifyWhenDown;
 	private List<Boolean> notifyWhenResponseIsHigh;
-	private List<Boolean> isBeingMonitored;
 	private final int RESPONSE_THRESHOLD = 10; // (in seconds)
 	
 	public Website() {
@@ -40,11 +39,9 @@ public class Website implements Serializable {
 		this.users = new ArrayList<Long>();
 		this.notifyWhenDown = new ArrayList<Boolean>();
 		this.notifyWhenResponseIsHigh = new ArrayList<Boolean>();
-		this.isBeingMonitored = new ArrayList<Boolean>();
 		this.users.add(user);
 		this.notifyWhenDown.add(notifyWhenDown);
 		this.notifyWhenResponseIsHigh.add(notifyWhenResponseIsHigh);
-		this.isBeingMonitored.add(false);
 		this.responseInfo = new ArrayList<ResponseInfo>();
 	}
 
@@ -145,14 +142,6 @@ public class Website implements Serializable {
 		this.notifyWhenResponseIsHigh = notifyWhenResponseIsHigh;
 	}
 
-	public List<Boolean> getIsBeingMonitored() {
-		return isBeingMonitored;
-	}
-
-	public void setIsBeingMonitored(List<Boolean> isBeingMonitored) {
-		this.isBeingMonitored = isBeingMonitored;
-	}
-
 	public Entity toEntity () {
         Entity entity = new Entity(Constants.stringWebsite, getUrl());
         entity.setProperty("name", getName());
@@ -161,7 +150,6 @@ public class Website implements Serializable {
         entity.setProperty("users", getUsers());
         entity.setProperty("notifyWhenDown", getNotifyWhenDown());
         entity.setProperty("notifyWhenResponseIsHigh", getNotifyWhenResponseIsHigh());
-        entity.setProperty("isBeingMonitored", getIsBeingMonitored());
         entity.setProperty("responseInfo", ResponseInfo.toEmbeddedEntity(getResponseInfo()));
         return entity;
     }
@@ -174,7 +162,6 @@ public class Website implements Serializable {
         setUsers((List<Long>) entity.getProperty("users"));
         setNotifyWhenDown((List<Boolean>) entity.getProperty("notifyWhenDown"));
         setNotifyWhenResponseIsHigh((List<Boolean>) entity.getProperty("notifyWhenResponseIsHigh"));
-        setIsBeingMonitored((List<Boolean>) entity.getProperty("isBeingMonitored"));
         Object ris = entity.getProperty("responseInfo");
         if(ris != null)
         	setResponseInfo(ResponseInfo.fromEmbeddedEntity((ArrayList<EmbeddedEntity>) ris));
@@ -187,9 +174,6 @@ public class Website implements Serializable {
         
         if(notifyWhenResponseIsHigh == null)
         	this.notifyWhenResponseIsHigh = new ArrayList<Boolean>();
-        
-        if(isBeingMonitored == null)
-        	this.isBeingMonitored = new ArrayList<Boolean>();
         
         if(responseInfo == null)
         	this.responseInfo = new ArrayList<ResponseInfo>();

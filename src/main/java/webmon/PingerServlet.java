@@ -23,6 +23,6 @@ public class PingerServlet extends HttpServlet {
         website.getResponseTime();
 		DatastoreUtils.putWebsite(website);
 		
-		response.sendRedirect("/");
+		response.setStatus(HttpServletResponse.SC_OK);
     }
 }

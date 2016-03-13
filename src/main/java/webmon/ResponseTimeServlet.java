@@ -29,6 +29,6 @@ public class ResponseTimeServlet extends HttpServlet {
 					.param("id", String.valueOf(website.getId())));
 		}
 		
-		resp.sendRedirect("/");
+		resp.setStatus(HttpServletResponse.SC_OK);
 	}
 }

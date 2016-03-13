@@ -20,8 +20,8 @@
 			<input class="form-control" type="password" required id="password" name="password" placeholder="Password" />
 			
 			<button class="btn btn-primary btn-block btn-lg" type="submit">
-				<span>Log In</span>
 				<span class="glyphicon glyphicon-log-in"></span>
+				<span>Log In</span>
 			</button>
 		</form>
 		

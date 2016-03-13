@@ -1,5 +1,7 @@
 package webmon.core;
 
+import java.util.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -33,8 +35,25 @@ public class Websites {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getWebsite(@PathParam("id") int id) {
-		return "{ \"result\": \"Website details for website with id: " + id + "\"}";
+	public Website getWebsite(@PathParam("id") long id) {
+		Website website = DatastoreUtils.getWebsite(id);
+		User user = DatastoreUtils.getUser(String.valueOf(httpRequest.getSession(false).getAttribute("user")));
+		int index = website.getUsers().indexOf(Long.valueOf(user.getId()));
+		website.setUsers(null);
+		List<Boolean> notifyWhenResponseIsHigh = new ArrayList<Boolean>();
+		notifyWhenResponseIsHigh.add(website.getNotifyWhenResponseIsHigh().get(index));
+		List<Boolean> notifyWhenDown = new ArrayList<Boolean>();
+		notifyWhenDown.add(website.getNotifyWhenDown().get(index));
+		website.setNotifyWhenResponseIsHigh(notifyWhenResponseIsHigh);
+		website.setNotifyWhenDown(notifyWhenDown);
+		
+		return website;
+	}
+	@GET
+	@Path("{id}")
+	@Produces(MediaType.TEXT_HTML)
+	public Response getWebsiteHTML(@PathParam("id") int id) {
+		return Response.ok(new Viewable(Constants.jspRoot + "website.jsp", null)).build();
 	}
 	
 	@POST
@@ -70,7 +89,31 @@ public class Websites {
 	@PUT
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String updateWebsite(@PathParam("id") int id) {
-		return "{ \"result\": \"Successfully updated website with id: " + id + "\"}";
+	public String updateWebsite(@FormParam("url") String url,
+			@FormParam("notifyDown") String notifyDown,
+			@FormParam("notifyResponse") String notifyResponse) {
+		try {
+			Website website = DatastoreUtils.getWebsite(url);
+			boolean notDown = true;
+			boolean notRes = true;
+			if(notifyDown == null || notifyDown.equals(""))
+				notDown = false;
+			if(notifyResponse == null || notifyResponse.equals(""))
+				notRes = false;
+			
+			User user = DatastoreUtils.getUser(String.valueOf(httpRequest.getSession(false).getAttribute("user")));
+			int userid = website.getUsers().indexOf(Long.valueOf(user.getId()));
+			
+			website.getNotifyWhenDown().set(userid, notDown);
+			website.getNotifyWhenResponseIsHigh().set(userid, notRes);
+			
+			DatastoreUtils.putWebsite(website);
+			
+			return "{ \"result\": \"Successfully updated user with email: " + website.getUrl() + "\", \"status\": 200}";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "{ \"result\": \"Updating website with given details failed.\", \"status\": 500}";
 	}
 }
