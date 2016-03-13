@@ -73,7 +73,7 @@ require(["alertUtil"], function (alertUtil) {
 				method: "PUT",
 				dataType: "json",
 				success: function (response) {
-				if(response.status === "500")
+				if(response.status === 500)
 					alertUtil.danger("Updating user details failed. Please try again");
 				else {
 					alertUtil.success("Successfully updated details.");

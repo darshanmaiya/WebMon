@@ -1,12 +1,12 @@
 require(["alertUtil"], function (alertUtil) {
 	
 	function getWebsiteId() {
-		var userid;
+		var websiteid;
 		
-		userid = location.href.match(/\/[0-9]+/);
-		userid = userid[0].substr(1);
+		websiteid = location.href.match(/\/[0-9]+/);
+		websiteid = websiteid[0].substr(1);
 		
-		return userid;
+		return websiteid;
 	}
 	
 	$.get("/webmon/websites/" + getWebsiteId(), function (website) {
@@ -57,7 +57,6 @@ require(["alertUtil"], function (alertUtil) {
 		
 	}, "json");
 	
-	// Validate user input on signup
     $(document).ready(function() {
     	
 		$('#addWebsiteForm').submit(function(event) {
@@ -72,8 +71,6 @@ require(["alertUtil"], function (alertUtil) {
 					alertUtil.danger("Updating website details failed. Please try again");
 				else {
 					alertUtil.success("Successfully updated details.");
-					$("#password").text("");
-					$("#repassword").text("");
 				}
 			}});
 			

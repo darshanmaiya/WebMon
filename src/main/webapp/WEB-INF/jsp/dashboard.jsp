@@ -53,10 +53,10 @@
 						<a title="Go to website" class="btn btn-link" href="<%= website.getUrl() %>" target="_blank">
 							<span class="glyphicon glyphicon-new-window"></span>
 						</a>
-						<button title="Edit website" class="btn btn-link">
+						<a class="btn btn-link" href="/webmon/websites/<%= website.getId() %>">
 							<span class="glyphicon glyphicon-pencil"></span>
-						</button>
-						<button title="Remove website" class="btn btn-link" style="color: red">
+						</a>
+						<button data-id="<%= website.getId() %>" class="removeWebsite btn btn-link" title="Remove website" style="color: red">
 							<span class="glyphicon glyphicon-remove"></span>
 						</button>
 					</div>
@@ -66,5 +66,8 @@
 	</div>
 	
 	<jsp:include page="footer.jsp" />
+	<script>
+		require(["dashboard"]);
+	</script>
 </body>
 </html>

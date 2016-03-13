@@ -109,11 +109,34 @@ public class Websites {
 			
 			DatastoreUtils.putWebsite(website);
 			
-			return "{ \"result\": \"Successfully updated user with email: " + website.getUrl() + "\", \"status\": 200}";
+			return "{ \"result\": \"Successfully updated website with email: " + website.getUrl() + "\", \"status\": 200}";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return "{ \"result\": \"Updating website with given details failed.\", \"status\": 500}";
+	}
+	
+	@DELETE
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String deleteWebsite(@PathParam("id") long id) {
+		try {
+			Website website = DatastoreUtils.getWebsite(id);
+			User user = DatastoreUtils.getUser(String.valueOf(httpRequest.getSession(false).getAttribute("user")));
+			
+			website.removeUser(user.getId());
+			
+			user.getMonitoredWebsites().remove(id);
+			
+			DatastoreUtils.putWebsite(website);
+			DatastoreUtils.putUser(user);
+			
+			return "{ \"result\": \"Successfully deleted website with email: " + website.getUrl() + "\", \"status\": 200}";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "{ \"result\": \"Deleting website with given details failed.\", \"status\": 500}";
 	}
 }

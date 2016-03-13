@@ -26,7 +26,8 @@ public class Website implements Serializable {
 	private List<Long> users;
 	private List<Boolean> notifyWhenDown;
 	private List<Boolean> notifyWhenResponseIsHigh;
-	private final int RESPONSE_THRESHOLD = 10; // (in seconds)
+	//private List<Long> monitorStartTime;
+	private final int RESPONSE_THRESHOLD = 10000; // (in milliseconds)
 	
 	public Website() {
 	}
@@ -93,7 +94,7 @@ public class Website implements Serializable {
 	        }
 		} catch(Exception e) {
 			 e.printStackTrace();
-			 responseTime = -1;
+			 responseTime = 0;
 		}
 
         // Create responseInfo object
