@@ -38,7 +38,6 @@ public class Users {
 		User user = DatastoreUtils.getUser(id);
 		user.setPassword("");
 		user.setMonitorWebsiteStart(null);
-		user.setMonitoredWebsites(null);
 		return user;
 	}
 	

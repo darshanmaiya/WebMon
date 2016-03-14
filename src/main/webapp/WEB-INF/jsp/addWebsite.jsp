@@ -31,7 +31,7 @@
 			<label><input type="checkbox" name="notifyDown" checked value="notifyDown" /> Notify me when this website is down</label>
 			<label><input type="checkbox" name="notifyResponse" checked value="notifyResponse" /> Notify me when the response time is high</label>
 			
-			<button class="btn btn-primary btn-block btn-lg" type="submit">
+			<button class="btn btn-primary btn-block btn-lg" id="submit" type="submit">
 				<span class="glyphicon glyphicon-plus"></span>
 				<span>Add website</span>
 			</button>
