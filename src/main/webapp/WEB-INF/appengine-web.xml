@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
     <application>cs263-webmon</application>
-    <version>2</version>
+    <version>3</version>
     <threadsafe>true</threadsafe>
     <sessions-enabled>true</sessions-enabled>
     
