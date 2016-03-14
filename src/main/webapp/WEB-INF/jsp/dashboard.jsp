@@ -44,6 +44,7 @@
 			<% for (int i=0; i<numMonitoredWebsites; i++) { %>
 				<div class="row website-row">
 					<% Website website = DatastoreUtils.getWebsite(monitoredWebsites.get(i)); %>
+					<% if(website == null) { i--; continue; } %>
 					<div class="col-md-8">
 						<a class="btn btn-link" href="/webmon/websites/<%= website.getId() %>">
 							<span title="<%= website.getUrl() %>"><%= website.getName() %></span>
