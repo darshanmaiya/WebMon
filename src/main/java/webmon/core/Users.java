@@ -37,6 +37,8 @@ public class Users {
 	public User getUserJSON(@PathParam("id") long id) {
 		User user = DatastoreUtils.getUser(id);
 		user.setPassword("");
+		user.setMonitorWebsiteStart(null);
+		user.setMonitoredWebsites(null);
 		return user;
 	}
 	
