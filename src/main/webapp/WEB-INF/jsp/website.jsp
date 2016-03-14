@@ -30,7 +30,7 @@
 			<label><input type="checkbox" id="notifyDown" name="notifyDown" value="notifyDown" /> Notify me when this website is down</label>
 			<label><input type="checkbox" id="notifyResponse" name="notifyResponse" value="notifyResponse" /> Notify me when the response time is high</label>
 			
-			<button class="btn btn-primary btn-block btn-lg" type="submit">
+			<button class="btn btn-primary btn-block btn-lg" id="submit" type="submit">
 				<span class="glyphicon glyphicon-floppy-disk"></span>
 				<span>Update website</span>
 			</button>

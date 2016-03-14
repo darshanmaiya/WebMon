@@ -19,7 +19,7 @@
 			<input class="form-control" type="text" required autofocus id="email" name="email" placeholder="Email" />
 			<input class="form-control" type="password" required id="password" name="password" placeholder="Password" />
 			
-			<button class="btn btn-primary btn-block btn-lg" type="submit">
+			<button class="btn btn-primary btn-block btn-lg" id="submit" type="submit">
 				<span class="glyphicon glyphicon-log-in"></span>
 				<span>Log In</span>
 			</button>
