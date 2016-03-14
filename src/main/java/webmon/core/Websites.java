@@ -48,8 +48,11 @@ public class Websites {
 		website.setNotifyWhenResponseIsHigh(notifyWhenResponseIsHigh);
 		website.setNotifyWhenDown(notifyWhenDown);
 		
-		int websiteIndex = (int)Integer.valueOf(user.getMonitoredWebsites().indexOf(website.getId()));
-		int websiteIndexInUser = (int)Integer.valueOf(user.getMonitorWebsiteStart().get(websiteIndex));
+		int websiteIndex = user.getMonitoredWebsites().indexOf(website.getId());
+		int websiteIndexInUser = 0;
+		if(user.getMonitorWebsiteStart().get(websiteIndex) instanceof Integer) {
+			websiteIndexInUser = user.getMonitorWebsiteStart().get(websiteIndex);
+		}
 		
 		List<ResponseInfo> responseInfo = new ArrayList<ResponseInfo>();
 		if(websiteIndexInUser < website.getResponseInfo().size())
@@ -140,7 +143,9 @@ public class Websites {
 			
 			website.removeUser(user.getId());
 			
-			user.getMonitoredWebsites().remove(id);
+			int userIndex = user.getMonitoredWebsites().indexOf(id);
+			user.getMonitoredWebsites().remove(userIndex);
+			user.getMonitorWebsiteStart().remove(userIndex);
 			
 			DatastoreUtils.putWebsite(website);
 			DatastoreUtils.putUser(user);
