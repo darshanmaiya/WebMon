@@ -10,8 +10,15 @@ import com.google.appengine.api.taskqueue.*;
 import webmon.models.Website;
 import webmon.utils.DatastoreUtils;
 
+/**
+ * The Class ResponseTimeServlet.
+ */
 @SuppressWarnings("serial")
 public class ResponseTimeServlet extends HttpServlet {
+	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		final List<Website> allWebsites = DatastoreUtils.getAllWebsites();

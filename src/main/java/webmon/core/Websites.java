@@ -14,18 +14,31 @@ import webmon.models.User;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
+/**
+ * The Class Websites.
+ */
 //Map this class to /websites route
 @Path("/websites")
 public class Websites {
 	// Allows to insert contextual objects into the class,
+	/** The uri info. */
 	// e.g. ServletContext, Request, Response, UriInfo
 	@Context
 	UriInfo uriInfo;
+	
+	/** The request. */
 	@Context
 	Request request;
+	
+	/** The http request. */
 	@Context
 	HttpServletRequest httpRequest;
 	
+	/**
+	 * Returns the html which allows the user to add a new website.
+	 *
+	 * @return the response html
+	 */
 	@GET
 	@Path("/add")
 	@Produces(MediaType.TEXT_HTML)
@@ -33,6 +46,12 @@ public class Websites {
 		return Response.ok(new Viewable(Constants.jspRoot + "addWebsite.jsp", null)).build();
 	}
 	
+	/**
+	 * Gets the website details with given id.
+	 *
+	 * @param id the id of the required website
+	 * @return the website details in json format
+	 */
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -62,6 +81,12 @@ public class Websites {
 		return website;
 	}
 
+	/**
+	 * Gets the website html which allows user to see the details of a given website.
+	 *
+	 * @param id the id of the required website
+	 * @return the website html
+	 */
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.TEXT_HTML)
@@ -69,6 +94,15 @@ public class Websites {
 		return Response.ok(new Viewable(Constants.jspRoot + "website.jsp", null)).build();
 	}
 	
+	/**
+	 * Add a new website.
+	 *
+	 * @param name Name of website
+	 * @param url URL of website
+	 * @param notifyDown Whether to notify when the website is down
+	 * @param notifyResponse Whether to notify when the website has high response time
+	 * @return the json containing success or failure
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -102,6 +136,14 @@ public class Websites {
 		}
 	}
 	
+	/**
+	 * Update an existing website.
+	 *
+	 * @param url URL of website
+	 * @param notifyDown Whether to notify when the website is down
+	 * @param notifyResponse Whether to notify when the website has high response time
+	 * @return the json containing success or failure
+	 */
 	@PUT
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -133,6 +175,12 @@ public class Websites {
 		return "{ \"result\": \"Updating website with given details failed.\", \"status\": 500}";
 	}
 	
+	/**
+	 * Delete a website.
+	 *
+	 * @param id id of website to delete
+	 * @return the json containing success or failure
+	 */
 	@DELETE
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)

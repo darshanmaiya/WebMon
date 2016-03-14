@@ -4,8 +4,17 @@ import javax.servlet.http.*;
 
 import webmon.models.User;
 
+/**
+ * The Class AuthenticationUtils.
+ */
 public class AuthenticationUtils {
 
+	/**
+	 * Checks if user is logged in.
+	 *
+	 * @param request the request object
+	 * @return true, if user is logged in
+	 */
 	public static boolean isLoggedIn(HttpServletRequest request) {
 		boolean loggedIn = true;
 		
@@ -16,6 +25,12 @@ public class AuthenticationUtils {
 		return loggedIn;
 	}
 	
+	/**
+	 * Checks if user is authorized.
+	 *
+	 * @param request the request object
+	 * @return true, if user is authorized
+	 */
 	public static boolean isAuthorized(HttpServletRequest request) {
 		boolean authorized = true;
 		

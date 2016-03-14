@@ -8,14 +8,23 @@ import javax.servlet.http.*;
 import webmon.utils.AuthenticationUtils;
 import webmon.utils.Constants;
 
+/**
+ * The Class AuthorizationFilter.
+ */
 // Implements Filter class
 public class AuthorizationFilter implements Filter  {
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
+	 */
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 					  throws IOException, ServletException {
 
@@ -49,6 +58,9 @@ public class AuthorizationFilter implements Filter  {
 		chain.doFilter(request,response);
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#destroy()
+	 */
 	@Override
 	public void destroy() {
 		

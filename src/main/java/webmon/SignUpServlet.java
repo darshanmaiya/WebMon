@@ -8,9 +8,15 @@ import webmon.models.User;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
+/**
+ * The Class SignUpServlet.
+ */
 @SuppressWarnings("serial")
 public class SignUpServlet extends HttpServlet {
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try {
@@ -20,6 +26,9 @@ public class SignUpServlet extends HttpServlet {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) {
 		try {

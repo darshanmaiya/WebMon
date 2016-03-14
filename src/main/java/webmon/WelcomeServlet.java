@@ -2,9 +2,15 @@ package webmon;
 
 import javax.servlet.http.*;
 
+/**
+ * The Class WelcomeServlet.
+ */
 @SuppressWarnings("serial")
 public class WelcomeServlet extends HttpServlet {
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try {

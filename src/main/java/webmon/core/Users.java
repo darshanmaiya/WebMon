@@ -9,16 +9,28 @@ import webmon.models.User;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
+/**
+ * The Class Users.
+ */
 //Map this class to /users route
 @Path("/users")
 public class Users {
 	// Allows to insert contextual objects into the class,
+	/** The uri info. */
 	// e.g. ServletContext, Request, Response, UriInfo
 	@Context
 	UriInfo uriInfo;
+	
+	/** The request. */
 	@Context
 	Request request;
 	
+	/**
+	 * Returns the user json for the given id.
+	 *
+	 * @param id Id of user
+	 * @return the user json
+	 */
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +40,12 @@ public class Users {
 		return user;
 	}
 	
+	/**
+	 * Gets the user html for an individual user.
+	 *
+	 * @param id Id of user
+	 * @return the user html
+	 */
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.TEXT_HTML)
@@ -35,6 +53,15 @@ public class Users {
 		return Response.ok(new Viewable(Constants.jspRoot + "user.jsp", null)).build();
 	}
 	
+	/**
+	 * Update user.
+	 *
+	 * @param name Name of user
+	 * @param email Email ID of user
+	 * @param phone Phone number of user
+	 * @param password Password of user
+	 * @return the json response
+	 */
 	@PUT
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)

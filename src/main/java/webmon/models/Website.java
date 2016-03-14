@@ -14,27 +14,60 @@ import webmon.Notifier;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
+/**
+ * The Class Website.
+ */
 @XmlRootElement
 public class Website implements Serializable {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 458515780704922262L;
+	
+	/** The id. */
 	private long id;
+	
+	/** The url. */
 	private String url;
+	
+	/** The response info. */
 	private List<ResponseInfo> responseInfo;
+	
+	/** The name. */
 	private String name;
+	
+	/** The users. */
 	private List<Long> users;
+	
+	/** The notify when down. */
 	private List<Boolean> notifyWhenDown;
+	
+	/** The notify when response is high. */
 	private List<Boolean> notifyWhenResponseIsHigh;
+	
+	/** The last notification. */
 	private long lastNotification = 0;
+	
+	/** The response threshold. */
 	private final int RESPONSE_THRESHOLD = 5000; // (in milliseconds)
+	
+	/** The notification timeout. */
 	private final long NOTIFICATION_TIMEOUT = 21600000; // (in milliseconds)
 	
+	/**
+	 * Instantiates a new website.
+	 */
 	public Website() {
 	}
 	
+	/**
+	 * Instantiates a new website.
+	 *
+	 * @param url the url
+	 * @param name the name
+	 * @param user the user
+	 * @param notifyWhenDown the notify when down
+	 * @param notifyWhenResponseIsHigh the notify when response is high
+	 */
 	public Website(String url, String name, long user, boolean notifyWhenDown, boolean notifyWhenResponseIsHigh)
 	{
 		this.id = WebMonInfo.getNewWebsiteId();
@@ -49,30 +82,65 @@ public class Website implements Serializable {
 		this.responseInfo = new ArrayList<ResponseInfo>();
 	}
 
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Gets the url.
+	 *
+	 * @return the url
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * Sets the url.
+	 *
+	 * @param url the new url
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
+	/**
+	 * Gets the response info.
+	 *
+	 * @return the response info
+	 */
 	public List<ResponseInfo> getResponseInfo() {
 		return responseInfo;
 	}
 
+	/**
+	 * Sets the response info.
+	 *
+	 * @param responseInfo the new response info
+	 */
 	public void setResponseInfo(List<ResponseInfo> responseInfo) {
 		this.responseInfo = responseInfo;
 	}
 	
+	/**
+	 * Gets the response time.
+	 *
+	 * @return the response time
+	 */
 	public void getResponseTime () {
 		long responseTime = 0;
 		try {
@@ -141,28 +209,60 @@ public class Website implements Serializable {
 		}
 	}
 	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Gets the users.
+	 *
+	 * @return the users
+	 */
 	public List<Long> getUsers() {
 		return users;
 	}
 
+	/**
+	 * Sets the users.
+	 *
+	 * @param users the new users
+	 */
 	public void setUsers(List<Long> users) {
 		this.users = users;
 	}
 	
+	/**
+	 * Adds the user.
+	 *
+	 * @param userId the user id
+	 * @param notifyDown the notify down
+	 * @param notifyResponse the notify response
+	 */
 	public void addUser(long userId, boolean notifyDown, boolean notifyResponse) {
 		this.users.add(userId);
 		this.notifyWhenDown.add(notifyDown);
 		this.notifyWhenResponseIsHigh.add(notifyResponse);
 	}
 	
+	/**
+	 * Removes the user.
+	 *
+	 * @param userId the user id
+	 */
 	public void removeUser(long userId) {
 		int i = this.users.indexOf(userId);
 		if(i != -1) {
@@ -172,30 +272,65 @@ public class Website implements Serializable {
 		}
 	}
 
+    /**
+     * Gets the notify when down.
+     *
+     * @return the notify when down
+     */
     public List<Boolean> getNotifyWhenDown() {
 		return notifyWhenDown;
 	}
 
+	/**
+	 * Sets the notify when down.
+	 *
+	 * @param notifyWhenDown the new notify when down
+	 */
 	public void setNotifyWhenDown(List<Boolean> notifyWhenDown) {
 		this.notifyWhenDown = notifyWhenDown;
 	}
 
+	/**
+	 * Gets the notify when response is high.
+	 *
+	 * @return the notify when response is high
+	 */
 	public List<Boolean> getNotifyWhenResponseIsHigh() {
 		return notifyWhenResponseIsHigh;
 	}
 
+	/**
+	 * Sets the notify when response is high.
+	 *
+	 * @param notifyWhenResponseIsHigh the new notify when response is high
+	 */
 	public void setNotifyWhenResponseIsHigh(List<Boolean> notifyWhenResponseIsHigh) {
 		this.notifyWhenResponseIsHigh = notifyWhenResponseIsHigh;
 	}
 
+	/**
+	 * Gets the last notification.
+	 *
+	 * @return the last notification
+	 */
 	public long getLastNotification() {
 		return lastNotification;
 	}
 
+	/**
+	 * Sets the last notification.
+	 *
+	 * @param lastNotification the new last notification
+	 */
 	public void setLastNotification(long lastNotification) {
 		this.lastNotification = lastNotification;
 	}
 	
+	/**
+	 * To entity.
+	 *
+	 * @return the entity
+	 */
 	public Entity toEntity () {
         Entity entity = new Entity(Constants.stringWebsite, getUrl());
         entity.setProperty("name", getName());
@@ -209,6 +344,12 @@ public class Website implements Serializable {
         return entity;
     }
 
+	/**
+	 * From entity.
+	 *
+	 * @param entity the entity
+	 * @return the website
+	 */
 	@SuppressWarnings("unchecked")
 	public Website fromEntity (Entity entity) {
         setName((String) entity.getProperty("name"));

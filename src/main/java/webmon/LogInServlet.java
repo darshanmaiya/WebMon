@@ -6,9 +6,15 @@ import webmon.utils.AuthenticationUtils;
 import webmon.utils.Constants;
 import webmon.utils.DatastoreUtils;
 
+/**
+ * The Class LogInServlet.
+ */
 @SuppressWarnings("serial")
 public class LogInServlet extends HttpServlet {
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try {
@@ -25,6 +31,9 @@ public class LogInServlet extends HttpServlet {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) {
 		try {

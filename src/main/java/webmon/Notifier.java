@@ -20,13 +20,27 @@ import webmon.models.User;
 
 public class Notifier {
 	
+	/*
+	 * These fields have been intentionally left as empty strings
+	 * because these will be populated at runtime.
+	 * 
+	 * Keeping the values for these attributes here will expose them,
+	 * as the code is stored in a public github repository.
+	 */
 	private static final String ACCOUNT_SID = "";
 	private static final String AUTH_TOKEN = "";
 	private static final String TWILIO_NUMBER = "";
 	private static final String WEBMON_EMAIL = "";
+	
 	private static final String WEBMON_NAME = "WebMon";
 	private static final String WEBMON_SUBJECT = "WebMon Notification";
 	
+	/**
+	 * Notify the user via mail.
+	 *
+	 * @param user User who has to be notified
+	 * @param message The message to send to the user
+	 */
 	public static final void notifyViaMail(User user, String message) {
 		Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
@@ -44,6 +58,12 @@ public class Notifier {
         }
 	}
 	
+	/**
+	 * Notify the user via SMS.
+	 *
+	 * @param user User who has to be notified
+	 * @param message The message to send to the user
+	 */
 	public static final void notifyViaSms(User user, String message) {
 		//Create a Twilio REST client
         TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);

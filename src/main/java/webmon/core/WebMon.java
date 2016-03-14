@@ -4,8 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
+/**
+ * The Class WebMon for creating a new JAX-RS application.
+ */
 public class WebMon extends Application {
  
+	/* (non-Javadoc)
+	 * @see javax.ws.rs.core.Application#getClasses()
+	 */
 	@Override
 	public Set<Class<?>> getClasses() {
 		

@@ -8,10 +8,19 @@ import webmon.models.User;
 import webmon.models.WebMonInfo;
 import webmon.models.Website;
 
+/**
+ * The Class MemcacheUtils.
+ */
 public final class MemcacheUtils {
 
 	private static final MemcacheService syncCache = MemcacheServiceFactory.getMemcacheService();
 	
+	/**
+	 * Gets the user from memcache if it exists or null.
+	 *
+	 * @param key the key
+	 * @return User
+	 */
 	public static User getUser(String key) {
 
 		syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
@@ -23,6 +32,11 @@ public final class MemcacheUtils {
         }
     }
     
+    /**
+     * Store user in memcache.
+     *
+     * @param user User
+     */
     public static void putUser(User user) {
 
     	syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
@@ -33,6 +47,11 @@ public final class MemcacheUtils {
         }
     }
 
+    /**
+     * Gets the WebMonInfo class from memcache.
+     *
+     * @return the WebMonInfo class
+     */
     public static Object getWebMonInfo() {
 
     	syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
@@ -44,6 +63,9 @@ public final class MemcacheUtils {
         }
     }
     
+    /**
+     * Store WebMonInfo class to memcache.
+     */
     public static void putWebMonInfo() {
 
     	syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
@@ -54,6 +76,12 @@ public final class MemcacheUtils {
         }
     }
     
+    /**
+     * Gets the website from memcache.
+     *
+     * @param url URL
+     * @return the Website
+     */
     public static Website getWebsite(String url) {
 
 		syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
@@ -65,6 +93,11 @@ public final class MemcacheUtils {
         }
     }
     
+    /**
+     * Stores website in memcache.
+     *
+     * @param website the website
+     */
     public static void putWebsite(Website website) {
 
     	syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
@@ -75,6 +108,11 @@ public final class MemcacheUtils {
         }
     }
     
+    /**
+     * Delete website from memcache.
+     *
+     * @param url the url
+     */
     public static void deleteWebsite(String url) {
 
     	syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));

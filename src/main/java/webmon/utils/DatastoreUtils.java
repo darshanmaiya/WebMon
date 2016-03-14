@@ -10,10 +10,20 @@ import webmon.models.User;
 import webmon.models.WebMonInfo;
 import webmon.models.Website;
 
+/**
+ * The Class DatastoreUtils.
+ */
 public final class DatastoreUtils {
 	
+    /** The Constant datastoreService. */
     private static final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
     
+    /**
+     * Check if user with given key exists.
+     *
+     * @param key User email
+     * @return true, if user exists
+     */
     public static final boolean checkUser(String key) {
         try {
         	Object user = MemcacheUtils.getUser(key);
@@ -29,6 +39,13 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Check user credentials.
+     *
+     * @param key User email
+     * @param password Password
+     * @return true, if credentials match
+     */
     public static final boolean checkUserCredentials(String key, String password) {
         try {
         	User loggedInUser;
@@ -51,6 +68,12 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Gets the user with given email.
+     *
+     * @param key User email
+     * @return the user
+     */
     public static final User getUser(String key) {
     	LoggingUtils.logMsg("Get user: " + key);
         try {
@@ -68,6 +91,12 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Gets the user with given id.
+     *
+     * @param id the id of required user
+     * @return the user
+     */
     public static final User getUser(long id) {
     	LoggingUtils.logMsg("Get user: " + id);
         try {
@@ -87,6 +116,9 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Store user to datastore.
+     */
     public static final void putUser(User user) {
     	LoggingUtils.logMsg("Store user: " + user.getEmail());
         try {
@@ -97,6 +129,9 @@ public final class DatastoreUtils {
         }
     }
 
+    /**
+     * Gets the WebMonInfo class from datastore.
+     */
     public static final void getWebMonInfo() {
         try {
         	Entity cachedObject = (Entity) MemcacheUtils.getWebMonInfo();
@@ -112,6 +147,9 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Store the WebMonInfo class in datastore.
+     */
     public static final void putWebMonInfo() {
         try {
         	MemcacheUtils.putWebMonInfo();
@@ -121,6 +159,12 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Gets the website with given url.
+     *
+     * @param url URL
+     * @return the website with given url, null if it doesn't exist
+     */
     public static final Website getWebsite(String url) {
     	LoggingUtils.logMsg("Get website: " + url);
         try {
@@ -138,6 +182,11 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Store website in datastore.
+     *
+     * @param website the website
+     */
     public static final void putWebsite(Website website) {
     	LoggingUtils.logMsg("Put website: " + website.getUrl());
         try {
@@ -148,6 +197,12 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Check if website exists.
+     *
+     * @param url Url
+     * @return true, if website exists
+     */
     public static final boolean checkWebsite(String url) {
         try {
         	Object website = MemcacheUtils.getWebsite(url);
@@ -163,6 +218,12 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Gets the website with given id.
+     *
+     * @param id the id of the required website
+     * @return the website
+     */
     public static final Website getWebsite(long id) {
     	LoggingUtils.logMsg("Get website: " + id);
         try {
@@ -182,6 +243,11 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Gets all the websites.
+     *
+     * @return all websites
+     */
     public static final List<Website> getAllWebsites() {
     	LoggingUtils.logMsg("Get all websites");
         try {
@@ -201,6 +267,11 @@ public final class DatastoreUtils {
         }
     }
     
+    /**
+     * Delete a website.
+     *
+     * @param url URL
+     */
     public static final void deleteWebsite(String url) {
     	LoggingUtils.logMsg("Delete website with key: " + url);
         try {
