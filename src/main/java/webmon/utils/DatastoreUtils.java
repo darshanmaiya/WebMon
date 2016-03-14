@@ -118,6 +118,8 @@ public final class DatastoreUtils {
     
     /**
      * Store user to datastore.
+     * 
+     * @param user The user object to store in datastore
      */
     public static final void putUser(User user) {
     	LoggingUtils.logMsg("Store user: " + user.getEmail());

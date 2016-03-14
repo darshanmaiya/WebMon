@@ -138,8 +138,6 @@ public class Website implements Serializable {
 	
 	/**
 	 * Gets the response time.
-	 *
-	 * @return the response time
 	 */
 	public void getResponseTime () {
 		long responseTime = 0;
