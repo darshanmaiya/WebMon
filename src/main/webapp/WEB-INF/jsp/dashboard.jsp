@@ -27,7 +27,7 @@
 				<h5>You are currently monitoring <strong><%= numMonitoredWebsites %></strong> websites.</h5>
 			</div>
 			<div class="col-sm-4 text-right">
-				<a href="webmon/websites/add">
+				<a id="addWebsite" href="webmon/websites/add">
 					<button class="btn btn-primary btn-lg">
 						<span class="glyphicon glyphicon-plus"></span>
 						Add website
