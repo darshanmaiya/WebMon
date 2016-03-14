@@ -48,8 +48,8 @@ public class Websites {
 		website.setNotifyWhenResponseIsHigh(notifyWhenResponseIsHigh);
 		website.setNotifyWhenDown(notifyWhenDown);
 		
-		int websiteIndex = user.getMonitoredWebsites().indexOf(website.getId());
-		int websiteIndexInUser = user.getMonitorWebsiteStart().get(websiteIndex);
+		int websiteIndex = (int)Integer.valueOf(user.getMonitoredWebsites().indexOf(website.getId()));
+		int websiteIndexInUser = (int)Integer.valueOf(user.getMonitorWebsiteStart().get(websiteIndex));
 		
 		List<ResponseInfo> responseInfo = new ArrayList<ResponseInfo>();
 		if(websiteIndexInUser < website.getResponseInfo().size())
@@ -58,6 +58,7 @@ public class Websites {
 		
 		return website;
 	}
+
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.TEXT_HTML)

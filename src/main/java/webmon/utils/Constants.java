@@ -23,4 +23,7 @@ public final class Constants {
 	
 	public static final String stringWebsiteAdded = "Website added successfully";
 	public static final String stringWebsiteExists = "Website already exists";
+	
+	public static final String stringWebsiteDown = "WebMon Notification: {0} might be down.";
+	public static final String stringWebsiteHighResponse = "WebMon Notification: {0} might be experiencing high response times.";
 }

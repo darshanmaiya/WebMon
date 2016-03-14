@@ -10,7 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.appengine.api.datastore.EmbeddedEntity;
 import com.google.appengine.api.datastore.Entity;
 
+import webmon.Notifier;
 import webmon.utils.Constants;
+import webmon.utils.DatastoreUtils;
 
 @XmlRootElement
 public class Website implements Serializable {
@@ -26,7 +28,9 @@ public class Website implements Serializable {
 	private List<Long> users;
 	private List<Boolean> notifyWhenDown;
 	private List<Boolean> notifyWhenResponseIsHigh;
+	private long lastNotification = 0;
 	private final int RESPONSE_THRESHOLD = 5000; // (in milliseconds)
+	private final long NOTIFICATION_TIMEOUT = 21600000; // (in milliseconds)
 	
 	public Website() {
 	}
@@ -89,7 +93,7 @@ public class Website implements Serializable {
 	       	if (code >= 200 && code < 400) {
 	        	responseTime = endTime - startTime;
 	        } else {
-	        	responseTime = -1 * code;
+	        	responseTime = 0;
 	        }
 		} catch(Exception e) {
 			 e.printStackTrace();
@@ -99,6 +103,42 @@ public class Website implements Serializable {
         // Create responseInfo object
 		ResponseInfo now = new ResponseInfo(responseTime);
 		responseInfo.add(now);
+		
+		if(responseTime == 0 || responseTime >= RESPONSE_THRESHOLD) {
+			long curTime = System.currentTimeMillis();
+			int size = responseInfo.size();
+			if(curTime - lastNotification < NOTIFICATION_TIMEOUT || size < 5)
+				return;
+			
+			lastNotification = curTime;
+			
+			if(responseTime == 0 &&
+					responseInfo.get(size-2).responseTime == 0 &&
+					responseInfo.get(size-3).responseTime == 0) {
+				int i = 0;
+				for(boolean notifyDown : notifyWhenDown) {
+					if(!notifyDown)
+						continue;
+					
+					User user = DatastoreUtils.getUser(this.getUsers().get(i));
+					Notifier.notifyViaMail(user, Constants.stringWebsiteDown.replace("{0}", this.name));
+					Notifier.notifyViaSms(user, Constants.stringWebsiteDown.replace("{0}", this.name));
+					i++;
+				}
+			} else if((responseTime + responseInfo.get(size-2).responseTime +
+					responseInfo.get(size-3).responseTime)/3 >= RESPONSE_THRESHOLD) {
+				int i = 0;
+				for(boolean notifyResponseHigh : notifyWhenResponseIsHigh) {
+					if(!notifyResponseHigh)
+						continue;
+					
+					User user = DatastoreUtils.getUser(this.getUsers().get(i));
+					Notifier.notifyViaMail(user, Constants.stringWebsiteHighResponse.replace("{0}", this.name));
+					Notifier.notifyViaSms(user, Constants.stringWebsiteHighResponse.replace("{0}", this.name));
+					i++;
+				}
+			}
+		}
 	}
 	
 	public String getName() {
@@ -148,6 +188,14 @@ public class Website implements Serializable {
 		this.notifyWhenResponseIsHigh = notifyWhenResponseIsHigh;
 	}
 
+	public long getLastNotification() {
+		return lastNotification;
+	}
+
+	public void setLastNotification(long lastNotification) {
+		this.lastNotification = lastNotification;
+	}
+	
 	public Entity toEntity () {
         Entity entity = new Entity(Constants.stringWebsite, getUrl());
         entity.setProperty("name", getName());
@@ -156,6 +204,7 @@ public class Website implements Serializable {
         entity.setProperty("users", getUsers());
         entity.setProperty("notifyWhenDown", getNotifyWhenDown());
         entity.setProperty("notifyWhenResponseIsHigh", getNotifyWhenResponseIsHigh());
+        entity.setProperty("lastNotification", getLastNotification());
         entity.setProperty("responseInfo", ResponseInfo.toEmbeddedEntity(getResponseInfo()));
         return entity;
     }
@@ -168,6 +217,7 @@ public class Website implements Serializable {
         setUsers((List<Long>) entity.getProperty("users"));
         setNotifyWhenDown((List<Boolean>) entity.getProperty("notifyWhenDown"));
         setNotifyWhenResponseIsHigh((List<Boolean>) entity.getProperty("notifyWhenResponseIsHigh"));
+        setLastNotification((long) entity.getProperty("lastNotification"));
         Object ris = entity.getProperty("responseInfo");
         if(ris != null)
         	setResponseInfo(ResponseInfo.fromEmbeddedEntity((ArrayList<EmbeddedEntity>) ris));

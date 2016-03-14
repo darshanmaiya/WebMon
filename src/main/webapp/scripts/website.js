@@ -52,8 +52,13 @@ require(["alertUtil"], function (alertUtil) {
 						title: 'Time'
 					},
 					vAxis: {
-						title: 'Response Rate (ms)'
-					}
+						title: 'Response Rate (ms)',
+						viewWindowMode:'explicit',
+						viewWindow:{
+							min:0
+						}
+					},
+					lineWidth: 5
 			};
 
 			var chart = new google.visualization.LineChart(document.getElementById('line_chart'));

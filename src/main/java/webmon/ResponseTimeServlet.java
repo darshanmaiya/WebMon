@@ -12,10 +12,10 @@ import webmon.utils.DatastoreUtils;
 
 @SuppressWarnings("serial")
 public class ResponseTimeServlet extends HttpServlet {
-	private final List<Website> allWebsites = DatastoreUtils.getAllWebsites();
-	private int i = 0;
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		final List<Website> allWebsites = DatastoreUtils.getAllWebsites();
+		int i = 0;
 
 		for(i=0; i<allWebsites.size(); i++) {
 			Website website = allWebsites.get(i);
