@@ -26,7 +26,7 @@
 		
 			<h3 class="form-signin-heading">Add a new website to monitor</h3>
 			<input class="form-control" type="text" required autofocus id="name" name="name" placeholder="Name" />
-			<input class="form-control" type="text" required id="url" name="url" placeholder="URL" />
+			<input class="form-control" type="text" required id="url" name="url" placeholder="URL (http://www.example.com/)" />
 			
 			<label><input type="checkbox" name="notifyDown" checked value="notifyDown" /> Notify me when this website is down</label>
 			<label><input type="checkbox" name="notifyResponse" checked value="notifyResponse" /> Notify me when the response time is high</label>
