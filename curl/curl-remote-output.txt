@@ -1,0 +1,94 @@
+Signing up a new user...
+User added successfully
+
+Logging in the new user...
+success
+
+Adding a new website for the user...
+{ "result": "Website added successfully"}
+
+Logging in a previous user with data...
+success
+
+Getting current user details...
+{"name":"Darshan Maiya","email":"darshanmaiya@outlook.co.in","phone":"8055688939","password":"","id":3,"monitoredWebsites":[3,4,8,10],"monitorWebsiteStart":null}
+
+Getting details of one of the websites being monitored...
+{"id":3,"url":"http://www.google.com","responseInfo":[{"responseTime":61,"timestamp":1457934180823},{"responseTime":44,"timestamp":1457934810845},{"responseTime":46,"timestamp":1457935094253},{"responseTime":49,"timestamp":1457935114408},{"responseTime":53,"timestamp":1457935151614},{"responseTime":46,"timestamp":1457935171833},{"responseTime":81,"timestamp":1457935421762},{"responseTime":40,"timestamp":1457935980930},{"responseTime":197,"timestamp":1457937782362},{"responseTime":41,"timestamp":1457939581269},{"responseTime":42,"timestamp":1457941380402},{"responseTime":53,"timestamp":1457943180504},{"responseTime":43,"timestamp":1457944980733},{"responseTime":39,"timestamp":1457946781084},{"responseTime":45,"timestamp":1457948580273},{"responseTime":47,"timestamp":1457950380602},{"responseTime":49,"timestamp":1457952180841},{"responseTime":138,"timestamp":1457953989109},{"responseTime":43,"timestamp":1457955781905},{"responseTime":42,"timestamp":1457957580302},{"responseTime":47,"timestamp":1457959380507},{"responseTime":94,"timestamp":1457961180703},{"responseTime":102,"timestamp":1457962981062},{"responseTime":51,"timestamp":1457964780595},{"responseTime":56,"timestamp":1457966580861},{"responseTime":43,"timestamp":1457968381124},{"responseTime":41,"timestamp":1457970180378},{"responseTime":53,"timestamp":1457971980618},{"responseTime":45,"timestamp":1457973782704},{"responseTime":48,"timestamp":1457975583066},{"responseTime":68,"timestamp":1457977389642},{"responseTime":49,"timestamp":1457979181229},{"responseTime":45,"timestamp":1457980980309},{"responseTime":117,"timestamp":1457982780513},{"responseTime":52,"timestamp":1457984580731},{"responseTime":52,"timestamp":1457986381912},{"responseTime":43,"timestamp":1457988181319},{"responseTime":69,"timestamp":1457989980661},{"responseTime":97,"timestamp":1457991780861},{"responseTime":43,"timestamp":1457993580876},{"responseTime":44,"timestamp":1457995381151},{"responseTime":43,"timestamp":1457997180770},{"responseTime":99,"timestamp":1457998981360},{"responseTime":102,"timestamp":1458000792499},{"responseTime":90,"timestamp":1458002589162},{"responseTime":44,"timestamp":1458004381581},{"responseTime":44,"timestamp":1458006181171},{"responseTime":48,"timestamp":1458007980665},{"responseTime":51,"timestamp":1458009781014},{"responseTime":44,"timestamp":1458011581098},{"responseTime":64,"timestamp":1458013380261},{"responseTime":30,"timestamp":1458015180607},{"responseTime":50,"timestamp":1458016980832},{"responseTime":31,"timestamp":1458018781153},{"responseTime":23,"timestamp":1458020580275},{"responseTime":29,"timestamp":1458022380435},{"responseTime":28,"timestamp":1458024180591},{"responseTime":26,"timestamp":1458025980916},{"responseTime":45,"timestamp":1458027790806},{"responseTime":44,"timestamp":1458029583466},{"responseTime":30,"timestamp":1458031381753},{"responseTime":91,"timestamp":1458033182264},{"responseTime":66,"timestamp":1458034980562},{"responseTime":27,"timestamp":1458036781245},{"responseTime":53,"timestamp":1458038581362},{"responseTime":29,"timestamp":1458040380814},{"responseTime":31,"timestamp":1458042180891},{"responseTime":29,"timestamp":1458043980977},{"responseTime":35,"timestamp":1458045781760},{"responseTime":31,"timestamp":1458047580793},{"responseTime":32,"timestamp":1458049380999},{"responseTime":32,"timestamp":1458051181165},{"responseTime":30,"timestamp":1458052980542},{"responseTime":32,"timestamp":1458054780744},{"responseTime":63,"timestamp":1458056580861},{"responseTime":30,"timestamp":1458058381105},{"responseTime":30,"timestamp":1458060180334},{"responseTime":93,"timestamp":1458061980510},{"responseTime":45,"timestamp":1458063791652}],"name":"Google","users":null,"notifyWhenDown":[true],"notifyWhenResponseIsHigh":[true],"lastNotification":0}
+
+Trying to get details of a non-existant website or a website this user doesn't have access to (must return error page)...
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>WebMon - Error</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../../css/common.css">
+	
+	<link rel="stylesheet" href="../../css/error.css">
+</head>
+<body>
+
+	
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#webmon-collapsed" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">WebMon</a>
+			<p class="navbar-text">A simple website monitoring service</p>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="webmon-collapsed">
+			
+			<ul class="nav navbar-nav navbar-right">
+				
+				
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Darshan Maiya <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/webmon">Go to Dashboard</a></li>
+							<li><a href="/webmon/users/3">View profile</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="/logout">Logout</a></li>
+						</ul>
+					</li>
+				
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+	<div class="container outer-body">
+	
+		<div class="jumbotron">
+			<h1 class="text-danger">Blimey! That's an error :-(</h1>
+			
+				<h3 class="text-warning">Status: <strong>401</strong></h3>
+				<h3 class="text-warning">Message: <strong>You are not authorized to view the requested resource.</strong></h3>
+			
+			<p>Click <a href="/">here</a> to go back to the WebMon home page.</p>
+		</div>
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+	requirejs.config({
+	    baseUrl: '/scripts'
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+Signing up a new user...
+User added successfully
+
+Logging in the new user...
+success
+
+Adding a new website for the user...
+{ "result": "Website added successfully"}
+
+Logging in a previous user with data...
+success
+
+Getting current user details...
+{"name":"Sample User","email":"sampleuser@example.com","phone":"1234567890","password":"","id":1,"monitoredWebsites":[1,2,3],"monitorWebsiteStart":null}
+
+Getting details of one of the websites being monitored...
+{"id":1,"url":"http://www.google.com","responseInfo":[{"responseTime":190,"timestamp":1458063844694},{"responseTime":98,"timestamp":1458063865162},{"responseTime":250,"timestamp":1458063879312},{"responseTime":108,"timestamp":1458063888806}],"name":"Google","users":null,"notifyWhenDown":[true],"notifyWhenResponseIsHigh":[true],"lastNotification":0}
+
+Trying to get details of a non-existant website or a website this user doesn't have access to (must return error page)...
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>WebMon - Error</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../../css/common.css">
+	
+	<link rel="stylesheet" href="../../css/error.css">
+</head>
+<body>
+
+	
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#webmon-collapsed" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">WebMon</a>
+			<p class="navbar-text">A simple website monitoring service</p>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="webmon-collapsed">
+			
+			<ul class="nav navbar-nav navbar-right">
+				
+				
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sample User <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/webmon">Go to Dashboard</a></li>
+							<li><a href="/webmon/users/1">View profile</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="/logout">Logout</a></li>
+						</ul>
+					</li>
+				
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+	<div class="container outer-body">
+	
+		<div class="jumbotron">
+			<h1 class="text-danger">Blimey! That's an error :-(</h1>
+			
+				<h3 class="text-warning">Status: <strong>401</strong></h3>
+				<h3 class="text-warning">Message: <strong>You are not authorized to view the requested resource.</strong></h3>
+			
+			<p>Click <a href="/">here</a> to go back to the WebMon home page.</p>
+		</div>
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+	requirejs.config({
+	    baseUrl: '/scripts'
+	});
+</script>
+</body>
+</html>
+
